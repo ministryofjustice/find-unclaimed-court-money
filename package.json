@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "esbuild": "^0.17.6",
+    "govuk-frontend": "4.4.1",
+    "sass": "^1.58.0"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --quiet-deps --no-source-map --load-path=node_modules"
+  }
+}
