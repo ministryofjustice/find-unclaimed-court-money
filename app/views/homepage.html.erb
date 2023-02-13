@@ -3,7 +3,7 @@
     <h1 class="govuk-heading-xl">Find unclaimed court money</h1>
 
     <p class="govuk-body">You can find and claim money you're entitled to from a civil court in England and Wales if it has not been claimed.</p>
-    <p class="govuk-body">This could be money paid to or awarded by a court (for example to settle a court case) to you or to someone whose <a href="https://www.gov.uk/unclaimed-estates-bona-vacantia" class="govuk-link">estate you're entitled to claim</a>.</p>
+    <p class="govuk-body">This could be money paid to or awarded by a court (for example to settle a court case) to you or to someone whose <%= govuk_link_to "estate you're entitled to claim", "https://www.gov.uk/unclaimed-estates-bona-vacantia" %>.</p>
     <p class="govuk-body">
       Money paid to a civil court in England and Wales is held in a Court Funds Office account. It's classed as unclaimed if the
       Court Funds Office has been unable to contact anyone entitled to the money and
@@ -25,19 +25,13 @@
       <nav role="navigation" aria-labelledby="subsection-title">
         <ul class="govuk-list">
           <li>
-            <a class="govuk-link" href="https://www.scotcourts.gov.uk/the-courts/more/the-accountant-of-court/contact-the-accountant-of-court">
-              Unclaimed court money in Scotland
-            </a>
+            <%= govuk_link_to "Unclaimed court money in Scotland", "https://www.scotcourts.gov.uk/the-courts/more/the-accountant-of-court/contact-the-accountant-of-court" %>
           </li>
           <li>
-            <a class="govuk-link" href="https://www.justice-ni.gov.uk/topics/courts-and-tribunals">
-              Unclaimed court money in Northern Ireland
-            </a>
+            <%= govuk_link_to "Unclaimed court money in Northern Ireland", "https://www.justice-ni.gov.uk/topics/courts-and-tribunals" %>
           </li>
           <li>
-            <a class="govuk-link" href="https://www.gov.uk/unclaimed-estates-bona-vacantia">
-              Claim or refer an unclaimed estate
-            </a>
+            <%= govuk_link_to "Claim or refer an unclaimed estate", "https://www.gov.uk/unclaimed-estates-bona-vacantia" %>
           </li>
         </ul>
       </nav>
