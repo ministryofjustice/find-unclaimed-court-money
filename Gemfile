@@ -10,6 +10,7 @@ gem "govuk_app_config"
 gem "govuk-components"
 gem "govuk_design_system_formbuilder"
 gem "jbuilder"
+gem "pagy", "~> 6.0"
 gem "pg"
 gem "puma", "~> 5.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

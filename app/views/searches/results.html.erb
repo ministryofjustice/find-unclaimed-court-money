@@ -7,5 +7,6 @@
 <% else %>
   <%= govuk_button_link_to "Download results as CSV" %>
   <%= render "table" %>
+  <%= govuk_pagination(pagy: @pagy) %>
 <% end %>
 
