@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
   get "/accessibility", to: "pages#accessibility"
+  get "/search",to: "search#index"
 
   root to: "pages#homepage"
 end

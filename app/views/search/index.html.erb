@@ -1,0 +1,18 @@
+<%= govuk_back_link(href: "/") %>
+
+<h1 class="govuk-heading-xl">Search for unclaimed court money</h1>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">You can search using keyword and/or date. Entering specific information will improve the accuracy of your search results.</p>
+    <%= form_for :search do |f| %>
+      <%= f.govuk_text_field :keywords, label: { text: "Search by keywords", size: "m" }, hint: { text: "For example, name, location, case type, organisation and/or court account number (has 9 characters, for example 27891231P)" } %>
+      <%= f.govuk_fieldset legend: { text: 'Search a date range' } do %>
+        <%= f.govuk_date_field :date_from, legend: { text: "Date from", size: "s" }, hint: { text: "For example, 27 3 2018" } %>
+        <%= f.govuk_date_field :date_to, legend: { text: "Date to", size: "s" }, hint: { text: "For example, 27 3 2021" } %>
+        <%= f.govuk_submit "Search" %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
