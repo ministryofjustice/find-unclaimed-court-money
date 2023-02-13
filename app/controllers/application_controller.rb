@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def homepage
     render "/homepage"
   end
+
+  def accessibility
+    render "/accessibility"
+  end
 end
