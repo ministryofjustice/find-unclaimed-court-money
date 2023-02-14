@@ -10,11 +10,21 @@ class Search
   validate :validate_dates
 
   def date_from=(value)
-    @date_from = ActiveRecord::Type::Date.new.cast(value)
+    return if value.nil?
+
+    year = value[1]
+    month = value[2]
+    day = value[3]
+    @date_from = Date.new(year, month, day) rescue value
   end
 
   def date_to=(value)
-    @date_to = ActiveRecord::Type::Date.new.cast(value)
+    return if value.nil?
+
+    year = value[1]
+    month = value[2]
+    day = value[3]
+    @date_to = Date.new(year, month, day) rescue value
   end
 
   def results
@@ -36,23 +46,19 @@ class Search
     scope.order(case_date: :desc)
   end
 
-  private
+private
 
   def terms
     keywords.downcase.split(",").map(&:strip)
   end
 
   def validate_dates
-    if date_from.present?
-      unless date_from.is_a? Date
-        errors.add(:date_from, :invalid)
-      end
+    if date_from.is_a?(Hash)
+      errors.add(:date_from, :invalid)
     end
 
-    if date_to.present?
-      unless date_to.is_a? Date
-        errors.add(:date_to, :invalid)
-      end
+    if date_to.is_a?(Hash)
+      errors.add(:date_to, :invalid)
     end
   end
 end
