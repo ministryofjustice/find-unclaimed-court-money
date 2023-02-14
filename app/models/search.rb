@@ -3,30 +3,54 @@ class Search
   include ActiveModel::Validations
   include ActiveRecord::AttributeAssignment
 
-  attr_accessor :keywords, :date_from, :date_to
+  attr_accessor :keywords
+  attr_reader :date_from, :date_to
 
   validates :keywords, presence: true, length: { minimum: 3 }
   validate :validate_dates
 
+  def date_from=(value)
+    @date_from = ActiveRecord::Type::Date.new.cast(value)
+  end
+
+  def date_to=(value)
+    @date_to = ActiveRecord::Type::Date.new.cast(value)
+  end
+
   def results
-    # title = Model.arel_table[:title]
-    # Model.where(title.matches("%#{query}%"))
-    Case.where("lower(case_name) LIKE ?", "%#{keywords.downcase}%")
+    scope = nil
+
+    terms.each do |term|
+      clause = Case.for_term(term)
+      scope = scope.nil? ? clause : scope.or(clause)
+    end
+
+    if date_from.present?
+      scope = scope.from_date(date_from)
+    end
+
+    if date_to.present?
+      scope = scope.to_date(date_to)
+    end
+
+    scope.order(case_date: :desc)
   end
 
   private
 
+  def terms
+    keywords.downcase.split(",").map(&:strip)
+  end
+
   def validate_dates
     if date_from.present?
-      from_date = Date.parse(date_from) rescue "invalid"
-      if from_date == "invalid"
+      unless date_from.is_a? Date
         errors.add(:date_from, :invalid)
       end
     end
 
     if date_to.present?
-      to_date = Date.parse(date_to) rescue "invalid"
-      if to_date == "invalid"
+      unless date_to.is_a? Date
         errors.add(:date_to, :invalid)
       end
     end
