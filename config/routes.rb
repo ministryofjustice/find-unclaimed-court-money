@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
   get "/accessibility", to: "pages#accessibility"
-  get "/search",to: "searches#new"
-  get "/search_results",to: "searches#results"
+  get "/search", to: "searches#new"
+  get "/search_results", to: "searches#results"
 
   resources :cases, only: [:show]
 

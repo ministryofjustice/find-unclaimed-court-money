@@ -1,6 +1,6 @@
 namespace :case do
-  task :import, [:filename] => [:environment] do |t, args|
-    # puts ARGV.inspect
+  desc "import cases"
+  task :import, [:filename] => [:environment] do |_, args|
     puts args[:filename]
     if args[:filename].to_s.empty?
       puts "filename parameter is required"

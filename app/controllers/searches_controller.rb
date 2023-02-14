@@ -13,8 +13,8 @@ class SearchesController < ApplicationController
         format.html { @pagy, @cases = pagy(@search.results) }
         format.csv do
           @cases = @search.results
-          filename = "Unclaimed Court Accounts#{Date.today.to_s}"
-          response.headers['Content-Disposition'] = 'attachment; filename="' + filename + '.csv"'
+          filename = "Unclaimed Court Accounts#{Time.zone.today}"
+          response.headers["Content-Disposition"] = "attachment; filename=#{filename}.csv"
           render csv: @cases
         end
       end

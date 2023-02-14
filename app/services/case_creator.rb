@@ -4,7 +4,7 @@ class CaseCreator
       year_carried_over: year_carried,
       case_name: prime_index,
       date_account_opened: date_account,
-      credit_details: credit_detail
+      credit_details: credit_detail,
     )
 
     kase.account_number = "#{case_number}#{check_character}"

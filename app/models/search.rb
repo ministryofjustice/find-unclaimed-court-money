@@ -15,7 +15,11 @@ class Search
     year = value[1]
     month = value[2]
     day = value[3]
-    @date_from = Date.new(year, month, day) rescue value
+    @date_from = begin
+      Date.new(year, month, day)
+    rescue TypeError, Date::Error
+      value
+    end
   end
 
   def date_to=(value)
@@ -24,7 +28,11 @@ class Search
     year = value[1]
     month = value[2]
     day = value[3]
-    @date_to = Date.new(year, month, day) rescue value
+    @date_to = begin
+      Date.new(year, month, day)
+    rescue
+      value
+    end
   end
 
   def results
