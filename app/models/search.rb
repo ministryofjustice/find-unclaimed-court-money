@@ -57,7 +57,7 @@ class Search
 private
 
   def terms
-    keywords.downcase.split(",").map(&:strip)
+    keywords.split(",").map(&:strip)
   end
 
   def validate_dates
