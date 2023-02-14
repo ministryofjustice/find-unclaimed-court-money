@@ -9,9 +9,17 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
 
     if @search.valid?
-      @pagy, @cases = pagy(@search.results)
+      respond_to do |format|
+        format.html { @pagy, @cases = pagy(@search.results) }
+        format.csv do
+          @cases = @search.results
+          filename = "Unclaimed Court Accounts#{Date.today.to_s}"
+          response.headers['Content-Disposition'] = 'attachment; filename="' + filename + '.csv"'
+          render csv: @cases
+        end
+      end
     else
-      render :new
+      render template: "searches/new", formats: [:html]
     end
   end
 

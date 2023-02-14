@@ -1,0 +1,4 @@
+"Name","Account Number","Year Carried Over","Credit Details","Date Account Opened"
+<% @cases.each do |kase| %>
+<%= raw kase.case_name %>,<%= kase.account_number %>,<%= kase.year_carried_over %>,<%= raw kase.credit_details %>,<%= kase.date_account_opened %>
+<% end %>

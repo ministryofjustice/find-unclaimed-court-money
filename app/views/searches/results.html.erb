@@ -9,7 +9,7 @@
 <% if @cases.empty? %>
   <p class="govuk-body">Nothing found to display.</p>
 <% else %>
-  <%= govuk_button_link_to "Download results as CSV" %>
+  <%= govuk_button_link_to "Download results as CSV", to_csv_path(request.url) %>
   <%= render "table" %>
   <%= govuk_pagination(pagy: @pagy) %>
 <% end %>
