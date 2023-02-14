@@ -6,11 +6,13 @@ class SearchesController < ApplicationController
   end
 
   def results
-    search = Search.new(search_params)
+    @search = Search.new(search_params)
 
-    # title = Model.arel_table[:title]
-    # Model.where(title.matches("%#{query}%"))
-    @pagy, @cases = pagy(Case.where("lower(case_name) LIKE ?", "%#{search.keywords.downcase}%"))
+    if @search.valid?
+      @pagy, @cases = pagy(@search.results)
+    else
+      render :new
+    end
   end
 
   def search_params
