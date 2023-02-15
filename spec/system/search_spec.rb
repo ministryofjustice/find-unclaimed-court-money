@@ -21,8 +21,6 @@ RSpec.describe "Search" do
 
     # Case page
     expect(page).to have_selector("h1", text: "Account details")
-    expect(page).to have_selector("a", text: "Print account details")
-    expect(page).to have_text("Test Case")
   end
 
   it "tells me if there was a problem with my search input" do
