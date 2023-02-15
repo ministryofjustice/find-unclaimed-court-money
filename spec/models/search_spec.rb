@@ -1,41 +1,36 @@
 RSpec.describe Search do
   subject(:search) { build(:search) }
 
-  describe "Validations" do
+  it { is_expected.to be_valid }
+
+  context "with only keywords" do
+    subject(:search) { described_class.new(keywords: "test") }
+
     it { is_expected.to be_valid }
+  end
 
-    it "is valid with only keywords" do
-      search = described_class.new(keywords: "test")
-      expect(search).to be_valid
-    end
+  context "with empty keywords" do
+    subject(:search) { described_class.new(keywords: "") }
 
-    it "is not valid without keywords" do
-      search.keywords = nil
-      expect(search).not_to be_valid
-    end
+    it { is_expected.not_to be_valid }
+  end
 
-    it "is not valid with too short keywords" do
-      search.keywords = "aa"
-      expect(search).not_to be_valid
-    end
+  context "with too short keywords" do
+    subject(:search) { described_class.new(keywords: "aa") }
 
-    it "is not valid with incorrect date_from" do
-      search.date_from = {
-        "date_from(1i)" => "1990",
-        "date_from(2i)" => "invalid",
-        "date_from(3i)" => "12",
-      }
-      expect(search).not_to be_valid
-    end
+    it { is_expected.not_to be_valid }
+  end
 
-    it "is not valid with incorrect date_to" do
-      search.date_from = {
-        "date_to(1i)" => "1990",
-        "date_to(2i)" => "invalid",
-        "date_to(3i)" => "12",
-      }
-      expect(search).not_to be_valid
-    end
+  context "with invalid date_from" do
+    subject(:search) { build(:search, date_from: { 3 => 1, 2 => nil, 1 => 1990 }) }
+
+    it { is_expected.not_to be_valid }
+  end
+
+  context "with invalid date_to" do
+    subject(:search) { build(:search, date_to: { 3 => 31, 2 => nil, 1 => 2020 }) }
+
+    it { is_expected.not_to be_valid }
   end
 
   describe "#results" do
