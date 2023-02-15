@@ -30,7 +30,7 @@ class Search
     day = value[3]
     @date_to = begin
       Date.new(year, month, day)
-    rescue
+    rescue TypeError, Date::Error
       value
     end
   end

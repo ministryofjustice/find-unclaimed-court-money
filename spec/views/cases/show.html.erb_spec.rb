@@ -1,4 +1,4 @@
-RSpec.describe "cases/show.html.erb", type: :view do
+RSpec.describe "cases/show.html.erb" do
   let(:kase) { create(:case) }
 
   before do

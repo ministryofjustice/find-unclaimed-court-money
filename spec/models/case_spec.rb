@@ -1,4 +1,4 @@
-RSpec.describe Case, type: :model do
+RSpec.describe Case do
   subject { create(:case) }
 
   let(:case_2020) { create(:case, case_date: Date.new(2020, 1, 1)) }

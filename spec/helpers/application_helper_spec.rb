@@ -1,4 +1,4 @@
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe ApplicationHelper do
   describe "to_csv_path" do
     it "converts a URL path to CSV format" do
       url = "https://test.com/my/path?param=1"

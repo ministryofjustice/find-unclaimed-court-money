@@ -23,6 +23,8 @@ class SearchesController < ApplicationController
     end
   end
 
+private
+
   def search_params
     params.require(:search).permit(:keywords, :date_from, :date_to)
   end

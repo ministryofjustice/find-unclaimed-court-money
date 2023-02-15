@@ -1,4 +1,4 @@
-RSpec.describe Search, type: :model do
+RSpec.describe Search do
   subject(:search) { build(:search) }
 
   describe "Validations" do
