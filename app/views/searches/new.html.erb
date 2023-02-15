@@ -8,7 +8,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= form_for @search, url: search_results_path, method: :get do |f| %>
+    <%= form_for @search, url: search_results_path, method: :get, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
       <%= f.govuk_error_summary %>
 
       <p class="govuk-body">You can search using keyword and/or date. Entering specific information will improve the accuracy of your search results.</p>
@@ -19,6 +19,5 @@
         <%= f.govuk_submit "Search" %>
       <% end %>
     <% end %>
-
   </div>
 </div>

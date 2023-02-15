@@ -8,7 +8,7 @@
 
 <%= govuk_button_link_to "Print account details", "javascript:window.print()" %>
 
-<%= render "summary" %>
+<%= render "summary", kase: @case %>
 
 <%= govuk_details(summary_text: "What happens next") do %>
   <h3 class="govuk-heading-s">Provide any further information you know</h3>

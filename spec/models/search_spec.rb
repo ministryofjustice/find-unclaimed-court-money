@@ -1,7 +1,9 @@
 RSpec.describe Search, type: :model do
-  let(:search) { build(:search) }
+  subject(:search) { build(:search) }
 
   describe "Validations" do
+    it { is_expected.to be_valid }
+
     it "is valid with only keywords" do
       search = described_class.new(keywords: "test")
       expect(search).to be_valid

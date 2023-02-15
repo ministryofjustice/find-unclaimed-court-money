@@ -1,26 +1,26 @@
 <%= govuk_summary_list(actions: false) do |summary_list|
   summary_list.with_row do |row|
     row.with_key { "Account number" }
-    row.with_value { @case.account_number }
+    row.with_value { kase.account_number }
   end;
 
   summary_list.with_row do |row|
     row.with_key { "Year carried over" }
-    row.with_value { @case.year_carried_over }
+    row.with_value { kase.year_carried_over }
   end;
 
   summary_list.with_row do |row|
     row.with_key { "Case name" }
-    row.with_value { @case.case_name }
+    row.with_value { kase.case_name }
   end;
 
   summary_list.with_row do |row|
     row.with_key { "Date account opened" }
-    row.with_value { @case.date_account_opened }
+    row.with_value { kase.date_account_opened }
   end;
 
   summary_list.with_row do |row|
     row.with_key { "Credit details" }
-    row.with_value { @case.credit_details }
+    row.with_value { kase.credit_details }
   end;
 end; %>

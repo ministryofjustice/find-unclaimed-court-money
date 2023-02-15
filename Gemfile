@@ -7,7 +7,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 gem "bootsnap", require: false
 gem "govuk_app_config"
-gem "govuk-components", "~> 3.3"
+gem "govuk-components"
 gem "govuk_design_system_formbuilder"
 gem "jbuilder"
 gem "pagy"
@@ -21,7 +21,7 @@ gem "sprockets", "~> 4.2"
 gem "sprockets-rails", "~> 3.4"
 
 group :test do
-  gem "simplecov"
+  gem "simplecov", require: false
 end
 
 group :development, :test do

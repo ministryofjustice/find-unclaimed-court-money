@@ -326,7 +326,7 @@ DEPENDENCIES
   cssbundling-rails (~> 1.1)
   debug
   factory_bot_rails
-  govuk-components (~> 3.3)
+  govuk-components
   govuk_app_config
   govuk_design_system_formbuilder
   govuk_test
