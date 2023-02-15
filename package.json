@@ -1,4 +1,12 @@
 {
+  "name": "find-unclaimed-court-money",
+  "description": "Provides a search interface for getting details of unclaimed court money",
+  "private": true,
+  "author": "MOJ",
+  "license": "MIT",
+  "stylelint": {
+    "extends": "stylelint-config-gds/scss"
+  },
   "dependencies": {
     "esbuild": "^0.17.6",
     "govuk-frontend": "4.4.1",
@@ -6,6 +14,13 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --quiet-deps --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --quiet-deps --no-source-map --load-path=node_modules",
+    "lint": "yarn run lint:scss",
+    "lint:scss": "stylelint app/assets/stylesheets/"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0",
+    "stylelint": "^15.1.0",
+    "stylelint-config-gds": "^0.2.0"
   }
 }
