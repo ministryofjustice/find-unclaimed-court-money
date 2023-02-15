@@ -1,38 +1,38 @@
 RSpec.describe Search, type: :model do
-  subject { build(:search) }
+  let(:search) { build(:search) }
 
   describe "Validations" do
     it "is valid with only keywords" do
-      subject = Search.new(keywords: "test")
-      expect(subject).to be_valid
+      search = described_class.new(keywords: "test")
+      expect(search).to be_valid
     end
 
     it "is not valid without keywords" do
-      subject.keywords = nil
-      expect(subject).to_not be_valid
+      search.keywords = nil
+      expect(search).not_to be_valid
     end
 
     it "is not valid with too short keywords" do
-      subject.keywords = "aa"
-      expect(subject).to_not be_valid
+      search.keywords = "aa"
+      expect(search).not_to be_valid
     end
 
     it "is not valid with incorrect date_from" do
-      subject.date_from = {
+      search.date_from = {
         "date_from(1i)" => "1990",
         "date_from(2i)" => "invalid",
-        "date_from(3i)" => "12"
+        "date_from(3i)" => "12",
       }
-      expect(subject).to_not be_valid
+      expect(search).not_to be_valid
     end
 
     it "is not valid with incorrect date_to" do
-      subject.date_from = {
+      search.date_from = {
         "date_to(1i)" => "1990",
         "date_to(2i)" => "invalid",
-        "date_to(3i)" => "12"
+        "date_to(3i)" => "12",
       }
-      expect(subject).to_not be_valid
+      expect(search).not_to be_valid
     end
   end
 
@@ -42,13 +42,13 @@ RSpec.describe Search, type: :model do
       case_2001 = create(:case, account_number: "test", case_date: Date.new(2001))
       case_2002 = create(:case, account_number: "test", case_date: Date.new(2002))
 
-      search = Search.new(keywords: "test")
+      search = described_class.new(keywords: "test")
 
       expect(search.results).to eq [case_2002, case_2001, case_2000]
     end
 
-    context "using scopes" do
-      let(:kase) { double(Case) }
+    context "when using scopes" do
+      let(:kase) { double("case") }
 
       before do
         allow(Case).to receive(:for_term).and_return(kase)
@@ -58,25 +58,25 @@ RSpec.describe Search, type: :model do
       end
 
       it "filters by from date using a scope" do
-        expect(kase).to receive(:from_date).with(subject.date_from)
-        subject.results
+        expect(kase).to receive(:from_date).with(search.date_from)
+        search.results
       end
 
       it "filters by to date using a scope" do
-        expect(kase).to receive(:to_date).with(subject.date_to)
-        subject.results
+        expect(kase).to receive(:to_date).with(search.date_to)
+        search.results
       end
 
       it "filters by one keyword" do
-        expect(Case).to receive(:for_term).with(subject.keywords)
-        subject.results
+        expect(Case).to receive(:for_term).with(search.keywords)
+        search.results
       end
 
       it "filters by multiple keywords" do
-        subject.keywords = "test1,test2"
+        search.keywords = "test1,test2"
         expect(Case).to receive(:for_term).with("test1").and_return(kase)
         expect(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
-        subject.results
+        search.results
       end
     end
   end
