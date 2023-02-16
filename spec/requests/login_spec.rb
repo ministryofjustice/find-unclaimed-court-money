@@ -1,12 +1,14 @@
 RSpec.describe "Login" do
-  let!(:user) { create(:user, name: "test_user", password: "mypass") }
+  before do
+    create(:user, name: "test_user", password: "mypass")
+  end
 
   it "does not allow access to the login page if not on the admin subdomain" do
     get admin_path
     expect(response.body).not_to include("Admin login")
   end
 
-  context "on admin subdomain" do
+  context "when on admin subdomain" do
     before { host! "admin.example.com" }
 
     it "allows user to login" do

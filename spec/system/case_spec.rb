@@ -17,7 +17,7 @@ RSpec.describe "Case" do
 
   it "lets me view more information about what to do next for case" do
     expect(page).not_to have_selector(".govuk-heading-s:first-of-type")
-    find('.govuk-details__summary-text').click
+    find(".govuk-details__summary-text").click
     expect(page).to have_selector(".govuk-heading-s:first-of-type")
   end
 end

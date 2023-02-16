@@ -10,8 +10,9 @@ RSpec.describe User do
   end
 
   context "when name is not unique" do
-    let(:existing_user) { create(:user) }
     subject { build(:user, name: existing_user.name) }
+
+    let(:existing_user) { create(:user) }
 
     it { is_expected.not_to be_valid }
   end

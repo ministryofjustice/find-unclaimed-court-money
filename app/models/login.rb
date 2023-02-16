@@ -14,7 +14,7 @@ private
   def authenticate
     return unless name.present? && password.present?
 
-    @user = User.find_by(name: name)
+    @user = User.find_by(name:)
     unless @user&.authenticate(password)
       errors.add(:base, :invalid)
     end

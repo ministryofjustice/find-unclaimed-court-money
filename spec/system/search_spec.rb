@@ -11,7 +11,7 @@ RSpec.describe "Search" do
 
     # Search page
     expect(page).to have_selector("h1", text: "Search for unclaimed court money")
-    fill_in "keywords", :with => "test"
+    fill_in "keywords", with: "test"
     click_button "Search"
 
     # Search results

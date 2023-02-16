@@ -13,8 +13,8 @@ RSpec.describe "Login" do
     visit "/"
     expect(page).to have_selector("h1", text: "Admin login")
 
-    fill_in "Login name", :with => "test_user"
-    fill_in "Password", :with => "mypassword"
+    fill_in "Login name", with: "test_user"
+    fill_in "Password", with: "mypassword"
     click_button "Login"
 
     expect(page).to have_selector("h1", text: "Upload CSV")
@@ -24,8 +24,8 @@ RSpec.describe "Login" do
     visit "/"
     expect(page).to have_selector("h1", text: "Admin login")
 
-    fill_in "Login name", :with => "test_user"
-    fill_in "Password", :with => "incorrect"
+    fill_in "Login name", with: "test_user"
+    fill_in "Password", with: "incorrect"
     click_button "Login"
 
     expect(page).to have_selector("h2", text: "There is a problem")
