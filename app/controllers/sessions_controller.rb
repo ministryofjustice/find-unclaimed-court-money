@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if current_user.present?
+      redirect_to upload_path and return
+    end
+
     @login = Login.new
   end
 
@@ -7,11 +11,16 @@ class SessionsController < ApplicationController
     @login = Login.new(create_params)
 
     if @login.valid?
-      session[:user_id] = @login.user.id.to_s
+      session[:user_id] = @login.user.id
       redirect_to upload_path
     else
       render :new
     end
+  end
+
+  def destroy
+    session.delete(:user_id)
+    redirect_to admin_path
   end
 
   def create_params

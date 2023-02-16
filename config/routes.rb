@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   constraints subdomain: "admin" do
     get "/", to: "sessions#new", as: :admin
-    post "/login", to: "sessions#create"
+    post "/", to: "sessions#create", as: :login
+    delete "/logout", to: "sessions#destroy"
 
     get "/upload", to: "uploads#new"
   end

@@ -10,24 +10,35 @@ RSpec.describe "Login" do
   end
 
   it "allows the user to login" do
-    visit "/"
-    expect(page).to have_selector("h1", text: "Admin login")
-
-    fill_in "Login name", with: "test_user"
-    fill_in "Password", with: "mypassword"
-    click_button "Login"
-
+    login_as("test_user", "mypassword")
     expect(page).to have_selector("h1", text: "Upload CSV")
   end
 
-  it "tells the user if there was a problem with login details" do
-    visit "/"
+  it "allows the user to logout" do
+    login_as("test_user", "mypassword")
+
+    visit("/upload")
+    click_on("Log out")
+
     expect(page).to have_selector("h1", text: "Admin login")
+  end
 
-    fill_in "Login name", with: "test_user"
-    fill_in "Password", with: "incorrect"
-    click_button "Login"
+  it "does not allow logged out user access to upload page" do
+    visit("/upload")
+    expect(page).to have_selector("h1", text: "Admin login")
+  end
 
+  it "tells the user if there was a problem with login details" do
+    login_as("test_user", "incorrect")
     expect(page).to have_selector("h2", text: "There is a problem")
   end
+end
+
+def login_as(name, password)
+  visit "/"
+  expect(page).to have_selector("h1", text: "Admin login")
+
+  fill_in "Login name", with: name
+  fill_in "Password", with: password
+  click_button "Login"
 end

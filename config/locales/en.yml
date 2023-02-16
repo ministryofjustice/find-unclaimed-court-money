@@ -24,9 +24,9 @@ en:
             base:
               invalid: Username / Password is invalid
             name:
-              blank: Name can't be blank
+              blank: Enter your login name
             password:
-              blank: Password can't be blank
+              blank: Enter your password
         search:
           attributes:
             keywords:
