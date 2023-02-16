@@ -2,7 +2,7 @@ RSpec.describe "Case" do
   let!(:kase) { create(:case, case_name: "Test Case") }
 
   before do
-    driven_by(:selenium_chrome_headless)
+    driven_by(:rack_test)
     visit "/cases/#{kase.id}"
   end
 

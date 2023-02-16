@@ -1,7 +1,7 @@
 RSpec.describe "Search" do
   before do
     create(:case, case_name: "Test Case")
-    driven_by(:selenium_chrome_headless)
+    driven_by(:rack_test)
   end
 
   it "lets me search for a case and view its details" do

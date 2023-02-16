@@ -8,5 +8,12 @@ Rails.application.routes.draw do
 
   resources :cases, only: [:show]
 
+  constraints subdomain: "admin" do
+    get "/", to: "sessions#new", as: :admin
+    post "/login", to: "sessions#create"
+
+    get "/upload", to: "uploads#new"
+  end
+
   root to: "pages#homepage"
 end

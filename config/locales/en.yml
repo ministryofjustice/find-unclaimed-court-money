@@ -11,12 +11,22 @@ en:
   page_title:
     accessibility: Accessibility statement
     case: Account details
+    login: Admin login
     search: Search
     search_results: Search results
+    upload: Upload CSV
 
   activemodel:
     errors:
       models:
+        login:
+          attributes:
+            base:
+              invalid: Username / Password is invalid
+            name:
+              blank: Name can't be blank
+            password:
+              blank: Password can't be blank
         search:
           attributes:
             keywords:
@@ -31,6 +41,8 @@ en:
     label:
       search:
         keywords: Search by keywords
+      login:
+        name: Login name
     legend:
       search:
         date_from: Date from
