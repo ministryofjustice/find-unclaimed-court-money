@@ -1,10 +1,4 @@
-class CaseCreator
-  def self.call(case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:)
-    kase = CaseCreator.build(case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:)
-    kase.save!
-    kase
-  end
-
+class CaseBuilder
   def self.build(case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:)
     kase = Case.new(
       year_carried_over: year_carried,
@@ -12,10 +6,6 @@ class CaseCreator
       date_account_opened: date_account,
       credit_details: credit_detail,
     )
-
-    if rand() > 0.9
-      raise
-    end
 
     kase.account_number = "#{case_number}#{check_character}"
     kase.case_date = Date.parse(date_account)
