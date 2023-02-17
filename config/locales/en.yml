@@ -36,6 +36,10 @@ en:
               invalid: Date from must be a valid date or omitted
             date_to:
               invalid: Date to must be a valid date or omitted
+        upload:
+          attributes:
+            file:
+              invalid: File is invalid
 
   helpers:
     label:

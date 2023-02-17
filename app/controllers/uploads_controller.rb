@@ -8,8 +8,8 @@ class UploadsController < ApplicationController
   def create
     @upload = Upload.new(create_params)
 
-    if @upload.valid?
-      @results = @upload.process
+    if @upload.valid? && @upload.process
+      @results = @upload.results
       render :complete
     else
       render :new

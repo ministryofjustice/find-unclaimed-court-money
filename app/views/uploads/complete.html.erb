@@ -8,6 +8,10 @@
 
 <%= govuk_summary_list(actions: false) do |summary_list|
   summary_list.with_row do |row|
+    row.with_key { "Records removed" }
+    row.with_value { @results[:removed].to_s }
+  end;
+  summary_list.with_row do |row|
     row.with_key { "Records added" }
     row.with_value { @results[:added].to_s }
   end;
