@@ -39,7 +39,7 @@ $ rbenv install
 $ rbenv init
 $ rbenv rehash
 ```
-Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` or equivelant file accordingly, then start a new terminal and navigate to the repo directory.
+Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` or equivalent file accordingly, then start a new terminal and navigate to the repo directory.
 
 #### Database Setup
 Use the setup command to install gems and create the database with seed data
