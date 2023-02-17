@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :case do
-    account_number { "123456" }
+    sequence(:account_number) { |n| "ABC#{n}" }
     year_carried_over { "2010" }
     case_name { "Joe Bloggs" }
     date_account_opened { "02/03/1996" }

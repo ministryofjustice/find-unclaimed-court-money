@@ -1,4 +1,13 @@
 RSpec.describe "Login" do
+  def login_as(name, password)
+    visit "/"
+    expect(page).to have_selector("h1", text: "Admin login")
+
+    fill_in "Login name", with: name
+    fill_in "Password", with: password
+    click_button "Login"
+  end
+
   before do
     create(:user, name: "test_user", password: "mypassword")
     driven_by(:rack_test)
@@ -32,13 +41,4 @@ RSpec.describe "Login" do
     login_as("test_user", "incorrect")
     expect(page).to have_selector("h2", text: "There is a problem")
   end
-end
-
-def login_as(name, password)
-  visit "/"
-  expect(page).to have_selector("h1", text: "Admin login")
-
-  fill_in "Login name", with: name
-  fill_in "Password", with: password
-  click_button "Login"
 end

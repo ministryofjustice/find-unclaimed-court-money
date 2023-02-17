@@ -10,7 +10,7 @@
     <% @cases.each do |kase| %>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><%= kase.account_number %></td>
-        <td class="govuk-table__cell"><%= govuk_link_to kase.case_name, case_path(kase.id) %></td>
+        <td class="govuk-table__cell"><%= govuk_link_to kase.case_name, case_path(kase.account_number) %></td>
         <td class="govuk-table__cell"><%= kase.date_account_opened %></td>
       </tr>
     <% end %>

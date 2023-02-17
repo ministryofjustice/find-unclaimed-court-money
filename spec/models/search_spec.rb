@@ -35,9 +35,9 @@ RSpec.describe Search do
 
   describe "#results" do
     it "orders by most recent case date" do
-      case_2000 = create(:case, account_number: "test", case_date: Date.new(2000))
-      case_2001 = create(:case, account_number: "test", case_date: Date.new(2001))
-      case_2002 = create(:case, account_number: "test", case_date: Date.new(2002))
+      case_2000 = create(:case, case_name: "test", case_date: Date.new(2000))
+      case_2001 = create(:case, case_name: "test", case_date: Date.new(2001))
+      case_2002 = create(:case, case_name: "test", case_date: Date.new(2002))
 
       search = described_class.new(keywords: "test")
 

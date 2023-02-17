@@ -3,7 +3,7 @@ RSpec.describe "Case" do
 
   before do
     driven_by(:rack_test)
-    visit "/cases/#{kase.id}"
+    visit "/cases/#{kase.account_number}"
   end
 
   it "lets me view case details" do

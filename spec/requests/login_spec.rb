@@ -1,4 +1,8 @@
 RSpec.describe "Login" do
+  def login_as(name, password)
+    post login_path, params: { login: { name:, password: } }
+  end
+
   let!(:user) { create(:user, name: "test_user", password: "mypass") }
 
   it "does not allow access to the login page if not on the admin subdomain" do
