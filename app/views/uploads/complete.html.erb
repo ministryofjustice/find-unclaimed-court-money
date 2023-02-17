@@ -1,0 +1,24 @@
+<% content_for :page_title do %>
+  <%= t('page_title.upload') %>
+<% end %>
+
+<%= button_to("Log out", "/logout", class: "govuk-back-link", method: :delete) %>
+
+<h1 class="govuk-heading-xl">Upload CSV Complete</h1>
+
+<%= govuk_summary_list(actions: false) do |summary_list|
+  summary_list.with_row do |row|
+    row.with_key { "Records added" }
+    row.with_value { @results[:added].to_s }
+  end;
+
+  summary_list.with_row do |row|
+    row.with_key { "Records failed" }
+    row.with_value { @results[:failed].to_s }
+  end;
+
+  summary_list.with_row do |row|
+    row.with_key { "Lines with errors" }
+    row.with_value { @results[:errors].join(",") }
+  end;
+end; %>

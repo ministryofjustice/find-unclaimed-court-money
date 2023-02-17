@@ -39,13 +39,20 @@ $ rbenv install
 $ rbenv init
 $ rbenv rehash
 ```
-Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` file accordingly, then start a new terminal and navigate to the repo directory.
+Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` or equivelant file accordingly, then start a new terminal and navigate to the repo directory.
 
 #### Database Setup
 Use the setup command to install gems and create the database with seed data
 ```
 bin/setup
 ```
+
+#### Assets
+Yarn is required to build css and js assets
+```
+brew install yarn
+```
+
 
 #### Running locally
 Use the dev command to run the application

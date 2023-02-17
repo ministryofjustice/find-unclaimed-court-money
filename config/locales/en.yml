@@ -43,6 +43,8 @@ en:
         keywords: Search by keywords
       login:
         name: Login name
+      upload:
+        file: Select a file to upload
     legend:
       search:
         date_from: Date from

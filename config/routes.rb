@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
 
     get "/upload", to: "uploads#new"
+    post "/upload", to: "uploads#create"
   end
 
   root to: "pages#homepage"
