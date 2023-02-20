@@ -2,7 +2,7 @@
   <%= t('page_title.upload') %>
 <% end %>
 
-<%= button_to("Log out", "/logout", class: "govuk-back-link", method: :delete) %>
+<%= govuk_back_link(href: "/upload", text: "Back") %>
 
 <h1 class="govuk-heading-xl">Upload CSV Complete</h1>
 
