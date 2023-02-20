@@ -1,8 +1,4 @@
 RSpec.describe "Login" do
-  def login_as(name, password)
-    post login_path, params: { login: { name:, password: } }
-  end
-
   let!(:user) { create(:user, name: "test_user", password: "mypass") }
 
   it "does not allow access to the login page if not on the admin subdomain" do
@@ -11,7 +7,7 @@ RSpec.describe "Login" do
   end
 
   context "when on admin subdomain" do
-    before { host! "admin.example.com" }
+    before { use_admin_subdomain }
 
     it "allows user to login" do
       get admin_path
@@ -23,7 +19,7 @@ RSpec.describe "Login" do
     end
 
     it "loads user into session" do
-      login_as("test_user", "mypass")
+      request_login_as("test_user", "mypass")
       expect(session[:user_id]).to eq user.id
     end
 
@@ -34,7 +30,7 @@ RSpec.describe "Login" do
 
     context "when logged in" do
       before do
-        login_as("test_user", "mypass")
+        request_login_as("test_user", "mypass")
       end
 
       it "allows user to logout" do
