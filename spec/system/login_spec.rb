@@ -1,13 +1,4 @@
 RSpec.describe "Login" do
-  def login_as(name, password)
-    visit "/"
-    expect(page).to have_selector("h1", text: "Admin login")
-
-    fill_in "Login name", with: name
-    fill_in "Password", with: password
-    click_button "Login"
-  end
-
   before do
     create(:user, name: "test_user", password: "mypassword")
     driven_by(:rack_test)
@@ -19,12 +10,12 @@ RSpec.describe "Login" do
   end
 
   it "allows the user to login" do
-    login_as("test_user", "mypassword")
+    system_login_as("test_user", "mypassword")
     expect(page).to have_selector("h1", text: "Upload CSV")
   end
 
   it "allows the user to logout" do
-    login_as("test_user", "mypassword")
+    system_login_as("test_user", "mypassword")
 
     visit("/upload")
     click_on("Log out")
@@ -38,7 +29,7 @@ RSpec.describe "Login" do
   end
 
   it "tells the user if there was a problem with login details" do
-    login_as("test_user", "incorrect")
+    system_login_as("test_user", "incorrect")
     expect(page).to have_selector("h2", text: "There is a problem")
   end
 end
