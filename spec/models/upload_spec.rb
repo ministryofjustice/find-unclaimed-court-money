@@ -1,4 +1,4 @@
-RSpec.describe Login do
+RSpec.describe Upload do
   subject { build(:upload) }
 
   it { is_expected.to be_valid }
@@ -10,7 +10,7 @@ RSpec.describe Login do
   end
 
   describe "#process" do
-    subject { upload.process }
+    subject(:process) { upload.process }
 
     let(:upload) { build(:upload) }
 
@@ -30,7 +30,7 @@ RSpec.describe Login do
       it { is_expected.to be_falsy }
 
       it "adds an error" do
-        subject
+        process
         expect(upload.errors.first.type).to eq :invalid
       end
     end

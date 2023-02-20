@@ -17,7 +17,7 @@ class UploadsController < ApplicationController
   end
 
   def authenticate
-    unless current_user.present?
+    if current_user.blank?
       redirect_to :admin, notice: "please login"
     end
   end

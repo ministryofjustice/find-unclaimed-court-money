@@ -9,7 +9,7 @@ class Upload
   def process
     @results = CsvImporter.import(File.open(file))
     true
-  rescue => e
+  rescue
     errors.add(:file, :invalid)
     false
   end

@@ -17,7 +17,7 @@ class CsvImporter
           date_account: row[4],
           credit_detail: row[5],
         )
-      rescue => e
+      rescue
         failed += 1
         errors << lineno
       end

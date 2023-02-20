@@ -1,6 +1,6 @@
 RSpec.describe "uploads/complete.html.erb" do
   it "renders results details for the upload", :aggregate_failures do
-    assign(:results, { added: 1009, failed: 1, errors: [20]})
+    assign(:results, { added: 1009, failed: 1, errors: [20] })
     render
 
     expect(rendered).to have_text("Records added or updated1009")
