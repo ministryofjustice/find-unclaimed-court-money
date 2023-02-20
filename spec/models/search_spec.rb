@@ -45,7 +45,7 @@ RSpec.describe Search do
     end
 
     context "when using scopes" do
-      let(:kase) { double("case") }
+      let(:kase) { object_double(Case) }
 
       before do
         allow(Case).to receive(:for_term).and_return(kase)
@@ -71,8 +71,8 @@ RSpec.describe Search do
 
       it "filters by multiple keywords" do
         search.keywords = "test1,test2"
-        expect(Case).to receive(:for_term).with("test1").and_return(kase)
-        expect(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
+        allow(Case).to receive(:for_term).with("test1").and_return(kase)
+        allow(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
         search.results
       end
     end
