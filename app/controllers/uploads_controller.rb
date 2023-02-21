@@ -1,4 +1,4 @@
-class UploadsController < ApplicationController
+class UploadsController < AdminController
   before_action :authenticate
 
   def new
