@@ -61,5 +61,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << /.*\.?dev\.local/
-  # config.allowlisted_ips = []
+  config.allowlisted_ips = []
 end
