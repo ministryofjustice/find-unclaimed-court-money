@@ -11,12 +11,22 @@ en:
   page_title:
     accessibility: Accessibility statement
     case: Account details
+    login: Admin login
     search: Search
     search_results: Search results
+    upload: Upload CSV
 
   activemodel:
     errors:
       models:
+        login:
+          attributes:
+            base:
+              invalid: Username / Password is invalid
+            name:
+              blank: Enter your login name
+            password:
+              blank: Enter your password
         search:
           attributes:
             keywords:
@@ -26,11 +36,19 @@ en:
               invalid: Date from must be a valid date or omitted
             date_to:
               invalid: Date to must be a valid date or omitted
+        upload:
+          attributes:
+            file:
+              invalid: File is invalid
 
   helpers:
     label:
       search:
         keywords: Search by keywords
+      login:
+        name: Login name
+      upload:
+        file: Select a file to upload
     legend:
       search:
         date_from: Date from

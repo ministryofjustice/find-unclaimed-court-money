@@ -2,8 +2,8 @@ RSpec.describe "Case" do
   let!(:kase) { create(:case, case_name: "Test Case") }
 
   before do
-    driven_by(:selenium_chrome_headless)
-    visit "/cases/#{kase.id}"
+    driven_by(:rack_test)
+    visit "/cases/#{kase.account_number}"
   end
 
   it "lets me view case details" do
@@ -17,7 +17,7 @@ RSpec.describe "Case" do
 
   it "lets me view more information about what to do next for case" do
     expect(page).not_to have_selector(".govuk-heading-s:first-of-type")
-    find('.govuk-details__summary-text').click
+    find(".govuk-details__summary-text").click
     expect(page).to have_selector(".govuk-heading-s:first-of-type")
   end
 end

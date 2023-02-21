@@ -9,7 +9,7 @@ RSpec.describe "searches/results.html.erb" do
   end
 
   it "renders a table of results", :aggregate_failures do
-    assign(:cases, [create(:case)])
+    assign(:cases, [kase])
     render
 
     expect(rendered).to have_text(kase.account_number)

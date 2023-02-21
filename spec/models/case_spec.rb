@@ -7,6 +7,14 @@ RSpec.describe Case do
 
   it { is_expected.to be_valid }
 
+  context "when account_number is not unique" do
+    subject { build(:case, account_number: "abc") }
+
+    before { create(:case, account_number: "abc") }
+
+    it { is_expected.not_to be_valid }
+  end
+
   describe ".from_date" do
     before do
       case_2020

@@ -35,9 +35,9 @@ RSpec.describe Search do
 
   describe "#results" do
     it "orders by most recent case date" do
-      case_2000 = create(:case, account_number: "test", case_date: Date.new(2000))
-      case_2001 = create(:case, account_number: "test", case_date: Date.new(2001))
-      case_2002 = create(:case, account_number: "test", case_date: Date.new(2002))
+      case_2000 = create(:case, case_name: "test", case_date: Date.new(2000))
+      case_2001 = create(:case, case_name: "test", case_date: Date.new(2001))
+      case_2002 = create(:case, case_name: "test", case_date: Date.new(2002))
 
       search = described_class.new(keywords: "test")
 
@@ -45,7 +45,7 @@ RSpec.describe Search do
     end
 
     context "when using scopes" do
-      let(:kase) { double("case") }
+      let(:kase) { object_double(Case) }
 
       before do
         allow(Case).to receive(:for_term).and_return(kase)
@@ -71,8 +71,8 @@ RSpec.describe Search do
 
       it "filters by multiple keywords" do
         search.keywords = "test1,test2"
-        expect(Case).to receive(:for_term).with("test1").and_return(kase)
-        expect(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
+        allow(Case).to receive(:for_term).with("test1").and_return(kase)
+        allow(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
         search.results
       end
     end

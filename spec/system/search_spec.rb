@@ -1,7 +1,7 @@
 RSpec.describe "Search" do
   before do
     create(:case, case_name: "Test Case")
-    driven_by(:selenium_chrome_headless)
+    driven_by(:rack_test)
   end
 
   it "lets me search for a case and view its details" do
@@ -11,7 +11,7 @@ RSpec.describe "Search" do
 
     # Search page
     expect(page).to have_selector("h1", text: "Search for unclaimed court money")
-    fill_in "keywords", :with => "test"
+    fill_in "keywords", with: "test"
     click_button "Search"
 
     # Search results
