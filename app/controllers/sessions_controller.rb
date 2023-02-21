@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < AdminController
   def new
     if current_user.present?
       redirect_to upload_path and return
