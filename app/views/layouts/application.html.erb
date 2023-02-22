@@ -27,7 +27,7 @@
 
     <%= govuk_skip_link %>
 
-    <%= govuk_header %>
+    <%= govuk_header(homepage_url: "https://www.gov.uk") %>
 
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper" id="main-content" role="main">
@@ -36,6 +36,6 @@
     </div>
 
     <%= govuk_footer(meta_items_title: "Support links", meta_items: {
-      t("footer.accessibility") => "accessibility", t("footer.help") => "https://www.gov.uk/help", t("footer.cookie") => "https://www.gov.uk/help/cookies", t("footer.contact") => "https://www.gov.uk/contact-court-funds-office" }) %>
+      t("footer.accessibility") => "/accessibility", t("footer.help") => "https://www.gov.uk/help", t("footer.cookie") => "https://www.gov.uk/help/cookies", t("footer.contact") => "https://www.gov.uk/contact-court-funds-office" }) %>
   </body>
 </html>
