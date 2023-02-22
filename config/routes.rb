@@ -17,5 +17,7 @@ Rails.application.routes.draw do
     post "/upload", to: "uploads#create"
   end
 
+  get "/404", to: "errors#not_found"
+
   root to: "pages#homepage"
 end
