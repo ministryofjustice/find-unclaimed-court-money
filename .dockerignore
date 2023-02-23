@@ -1,0 +1,9 @@
+*.log
+*.dev
+.git
+log
+node_modules
+public/assets
+coverage
+tmp
+vendor/cache
