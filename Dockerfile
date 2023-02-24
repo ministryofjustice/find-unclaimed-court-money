@@ -54,7 +54,7 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 RUN chown -R appuser:appgroup log tmp db
 
-USER appuser
+USER 1000
 
 ARG VERSION_NUMBER
 ARG COMMIT_ID
