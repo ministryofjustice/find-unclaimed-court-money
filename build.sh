@@ -11,11 +11,11 @@ function _build() {
 
   # 1. Define variables for use in the script
   team_name=central-digital-product-team
-  ecr_repo_name=find-unclaimed-court-money-ecr
+  ecr_repo_name=find-unclaimed-court-money-dev-ecr
   component=find-unclaimed-court-money
 
   region='eu-west-2'
-  aws_profile='ecr-live'
+  aws_profile='fum-dev'
 
   git_remote_url="https://github.com/ministryofjustice/find-unclaimed-court-money.git";
   docker_endpoint=754256621582.dkr.ecr.eu-west-2.amazonaws.com
