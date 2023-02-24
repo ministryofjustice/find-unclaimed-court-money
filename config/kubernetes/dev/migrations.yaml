@@ -14,11 +14,6 @@ spec:
           - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: find-unclaimed-court-money-rds-output
+                  name: rds-postgresql-instance-output
                   key: url
-        # envFrom:
-        #   - configMapRef:
-        #       name: environment-variables
-        #   - secretRef:
-        #       name: app-secrets
       restartPolicy: OnFailure
