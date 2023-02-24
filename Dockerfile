@@ -56,7 +56,11 @@ RUN chown -R appuser:appgroup log tmp db
 
 USER appuser
 
-EXPOSE 3000
-
-CMD bundle exec rails db:migrate && \
-    bundle exec rails server -b 0.0.0.0
+ARG VERSION_NUMBER
+ARG COMMIT_ID
+ARG BUILD_DATE
+ARG BUILD_TAG
+ENV APPVERSION=${VERSION_NUMBER}
+ENV APP_GIT_COMMIT=${COMMIT_ID}
+ENV APP_BUILD_DATE=${BUILD_DATE}
+ENV APP_BUILD_TAG=${BUILD_TAG}
