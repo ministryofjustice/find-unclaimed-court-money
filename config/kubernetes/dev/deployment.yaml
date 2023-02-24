@@ -25,16 +25,11 @@ spec:
                 secretKeyRef:
                   name: find-unclaimed-court-money-rds-output
                   key: url
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: find-unclaimed-court-money-rds-output
-                  key: database_password
-          envFrom:
-            - configMapRef:
-                name: environment-variables
-            - secretRef:
-                name: app-secrets
+          # envFrom:
+          #   - configMapRef:
+          #       name: environment-variables
+          #   - secretRef:
+          #       name: app-secrets
           readinessProbe:
             httpGet:
               path: /healthcheck/ready
@@ -69,13 +64,8 @@ spec:
                 secretKeyRef:
                   name: find-unclaimed-court-money-rds-output
                   key: url
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: find-unclaimed-court-money-rds-output
-                  key: database_password
-          envFrom:
-            - configMapRef:
-                name: environment-variables
-            - secretRef:
-                name: app-secrets
+          # envFrom:
+          #   - configMapRef:
+          #       name: environment-variables
+          #   - secretRef:
+          #       name: app-secrets

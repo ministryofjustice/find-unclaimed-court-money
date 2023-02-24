@@ -4,7 +4,7 @@ metadata:
   name: find-unclaimed-court-money-ingress
   namespace: find-unclaimed-court-money-dev
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: find-unclaimed-court-money-ingress-dev-green
+    external-dns.alpha.kubernetes.io/set-identifier: find-unclaimed-court-money-ingress-find-unclaimed-court-money-dev-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:

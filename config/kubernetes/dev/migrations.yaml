@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: find-unclaimed-court-money-migrations
+spec:
+  ttlSecondsAfterFinished: 60
+  template:
+    spec:
+      containers:
+      - name: migrations
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/central-digital-product-team/find-unclaimed-court-money-dev-ecr:latest
+        command: ["./config/docker/entrypoint-migrations.sh"]
+        env:
+          - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: find-unclaimed-court-money-rds-output
+                  key: url
+        # envFrom:
+        #   - configMapRef:
+        #       name: environment-variables
+        #   - secretRef:
+        #       name: app-secrets
+      restartPolicy: OnFailure
