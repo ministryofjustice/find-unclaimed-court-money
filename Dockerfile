@@ -13,7 +13,7 @@ RUN bundler -v && \
     bundle config set frozen 'true' && \
     bundle config set no-binstubs 'true' && \
     bundle config set without 'development test' && \
-    bundle install --jobs 2 --retry 3 && \
+    bundle install --jobs 4 --retry 3 && \
     rm -rf /usr/local/bundle/cache
 
 # Install node packages defined in package.json
@@ -52,6 +52,7 @@ RUN addgroup -g 1000 -S appgroup && \
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
+RUN mkdir -p log tmp
 RUN chown -R appuser:appgroup log tmp db
 
 USER 1000
