@@ -17,7 +17,7 @@ function _build() {
   region='eu-west-2'
   aws_profile='ecr-live'
 
-  git_remote_url="https://github.com/ministryofjustice/find-unclaimed-court-money";
+  git_remote_url="https://github.com/ministryofjustice/find-unclaimed-court-money.git";
   docker_endpoint=754256621582.dkr.ecr.eu-west-2.amazonaws.com
   docker_registry=${docker_endpoint}/${team_name}/${ecr_repo_name}
 
