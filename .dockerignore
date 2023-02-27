@@ -1,9 +1,10 @@
 *.log
 *.dev
-.git
+.git*
 log
-node_modules
-public/assets
-coverage
 tmp
-vendor/cache
+coverage
+node_modules
+spec
+public/assets
+README.md

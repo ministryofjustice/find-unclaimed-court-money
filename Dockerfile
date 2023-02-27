@@ -1,7 +1,7 @@
 # Build builder image
 FROM ruby:3.1.3-alpine as builder
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 RUN apk add --no-cache tzdata build-base yarn postgresql14-dev
 
@@ -13,8 +13,7 @@ RUN bundler -v && \
     bundle config set frozen 'true' && \
     bundle config set no-binstubs 'true' && \
     bundle config set without 'development test' && \
-    bundle install --jobs 4 --retry 3 && \
-    rm -rf /usr/local/bundle/cache
+    bundle install --jobs 4 --retry 3
 
 # Install node packages defined in package.json
 COPY package.json yarn.lock ./
@@ -36,13 +35,10 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
     find /usr/local/bundle/gems -name "*.html" -delete
 
 # Build runtime image
-FROM ruby:3.1.3-alpine as production
+FROM ruby:3.1.3-alpine
 
 # The application runs from /app
-WORKDIR /app
-
-# libpq: required to run postgres
-RUN apk add --no-cache libpq tzdata
+WORKDIR /usr/src/app
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
