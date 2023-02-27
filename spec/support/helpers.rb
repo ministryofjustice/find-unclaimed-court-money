@@ -1,14 +1,10 @@
 module Helpers
   def request_login_as(name, password)
-    post login_path, params: { login: { name:, password: } }
-  end
-
-  def use_admin_subdomain
-    host! "admin.example.com"
+    post admin_login_path, params: { login: { name:, password: } }
   end
 
   def system_login_as(name, password)
-    visit "/"
+    visit "/admin"
     expect(page).to have_selector("h1", text: "Admin login")
 
     fill_in "Login name", with: name

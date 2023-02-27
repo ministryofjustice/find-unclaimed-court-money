@@ -6,7 +6,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
-    <%= form_for @login, url: login_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+    <%= form_for @login, url: admin_login_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
       <%= f.govuk_error_summary %>
       <%= f.govuk_text_field :name %>
       <%= f.govuk_password_field :password %>

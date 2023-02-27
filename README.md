@@ -66,13 +66,4 @@ Use the dev command to run the application
 bin/dev
 ```
 
-#### Access admin area locally
-The admin section of the site only works from an admin subdomain. To access this from your local machine, some config needs to be added to you `/etc/hosts` file
-
-```
-127.0.0.1 dev.local
-127.0.0.1 admin.dev.local
-```
-
-The site can then be accessed at `http://dev.local:3000` and `http://admin.dev.local:3000`
 

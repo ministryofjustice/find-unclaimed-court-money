@@ -17,14 +17,14 @@ RSpec.describe "Login" do
   it "allows the user to logout" do
     system_login_as("test_user", "mypassword")
 
-    visit("/upload")
+    visit("/admin/upload")
     click_on("Log out")
 
     expect(page).to have_selector("h1", text: "Admin login")
   end
 
   it "does not allow logged out user access to upload page" do
-    visit("/upload")
+    visit("/admin/upload")
     expect(page).to have_selector("h1", text: "Admin login")
   end
 
