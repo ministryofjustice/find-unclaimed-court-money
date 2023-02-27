@@ -146,8 +146,8 @@ function _deploy() {
 
   # Apply image specific config
   kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
-          pending-migrations=${docker_image_tag} \
           webapp=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
+#           pending-migrations=${docker_image_tag} \
 
   # Apply non-image specific config
   kubectl apply \

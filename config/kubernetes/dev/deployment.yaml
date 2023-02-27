@@ -47,15 +47,15 @@ spec:
                   value: "on"
             initialDelaySeconds: 40
             periodSeconds: 60
-      initContainers:
-        - name: pending-migrations
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/central-digital-product-team/find-unclaimed-court-money-dev-ecr:latest
-          command:
-            - rake
-            - db:abort_if_pending_migrations
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: rds-postgresql-instance-output
-                  key: url
+      # initContainers:
+      #   - name: pending-migrations
+      #     image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/central-digital-product-team/find-unclaimed-court-money-dev-ecr:latest
+      #     command:
+      #       - rake
+      #       - db:abort_if_pending_migrations
+      #     env:
+      #       - name: DATABASE_URL
+      #         valueFrom:
+      #           secretKeyRef:
+      #             name: rds-postgresql-instance-output
+      #             key: url
