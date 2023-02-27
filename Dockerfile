@@ -58,7 +58,7 @@ RUN mkdir -p log tmp
 RUN chown -R appuser:appgroup log tmp db
 
 # Set user
-USER appuser
+USER 1000
 
 ARG VERSION_NUMBER
 ARG COMMIT_ID
