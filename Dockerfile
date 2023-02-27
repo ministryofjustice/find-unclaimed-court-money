@@ -1,7 +1,7 @@
 # Build builder image
 FROM ruby:3.1.3-alpine as builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 RUN apk add --no-cache tzdata build-base yarn postgresql14-dev
 
@@ -38,7 +38,7 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
 FROM ruby:3.1.3-alpine
 
 # The application runs from /app
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
