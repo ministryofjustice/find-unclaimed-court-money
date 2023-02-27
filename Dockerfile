@@ -3,8 +3,10 @@ FROM ruby:3.1.3-alpine as builder
 
 WORKDIR /app
 
+# Install dependencies
 RUN apk add --no-cache tzdata build-base yarn postgresql14-dev
 
+# Copy required files
 COPY .ruby-version Gemfile* ./
 
 # Install gems and remove gem cache
@@ -40,8 +42,8 @@ FROM ruby:3.1.3-alpine
 # The application runs from /app
 WORKDIR /app
 
-# libpq: required to run postgres
-RUN apk add --no-cache libpq
+# libpq: required to run postgres, tzdata: required to set timezone
+RUN apk add --no-cache libpq tzdata
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
@@ -51,10 +53,12 @@ RUN addgroup -g 1000 -S appgroup && \
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
+# Create log and tmp
 RUN mkdir -p log tmp
 RUN chown -R appuser:appgroup log tmp db
 
-USER 1000
+# Set user
+USER appuser
 
 ARG VERSION_NUMBER
 ARG COMMIT_ID
