@@ -19,8 +19,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "cssbundling-rails", "~> 1.1"
 gem "jsbundling-rails", "~> 1.1"
-gem "sprockets", "~> 4.2"
-gem "sprockets-rails", "~> 3.4"
+gem "propshaft"
 
 group :test do
   gem "simplecov", require: false
