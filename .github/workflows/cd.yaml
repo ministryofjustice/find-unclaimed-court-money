@@ -15,13 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      RACK_ENV: test
       RAILS_ENV: test
       DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/find_unclaimed_court_money_test"
 
     services:
       postgres:
-        image: postgres:14.5-alpine
+        image: postgres:14-alpine
         env:
           POSTGRES_DB: find_unclaimed_court_money_test
           POSTGRES_USER: postgres
