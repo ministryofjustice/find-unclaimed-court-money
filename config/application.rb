@@ -35,7 +35,6 @@ module FindUnclaimedCourtMoney
     config.generators.system_tests = nil
 
     config.assets.paths << Rails.root.join("node_modules/govuk-frontend/govuk/assets")
-    config.assets.excluded_paths << Rails.root.join("app/assets/stylesheets")
 
     config.exceptions_app = routes
 
