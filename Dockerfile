@@ -28,6 +28,8 @@ COPY . .
 RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 \
     bundle exec rails assets:precompile
 
+RUN mv node_modules/govuk-frontend/govuk/assets public/assets/
+
 # Cleanup to save space in the production image
 RUN rm -rf log/* tmp/* /tmp && \
     rm -rf /usr/local/bundle/cache && \
