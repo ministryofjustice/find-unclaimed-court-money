@@ -13,11 +13,6 @@ concurrency:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/find_unclaimed_court_money_test"
-
     services:
       postgres:
         image: postgres:14-alpine
@@ -28,21 +23,20 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/find_unclaimed_court_money_test"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: '3.1.3'
-
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
       - name: JS package cache
         uses: actions/cache@v3
         with:
@@ -50,35 +44,28 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install packages with yarn
         run: yarn install --frozen-lockfile
-
       - name: Precompile assets
         run: bin/rails assets:precompile
-
       - name: Setup test database
         run: bin/rails db:prepare
-
       - name: Run tests
         run: bundle exec rspec
+
   linters:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: '3.1.3'
-
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
       - name: JS package cache
         uses: actions/cache@v3
         with:
@@ -86,13 +73,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install packages with yarn
         run: yarn install --frozen-lockfile
+      - name: Lint stylesheets
+        run: yarn run lint
+      - name: Lint Ruby files
+        run: bundle exec rubocop
+      - name: Security audit application code
+        run: bundle exec brakeman -q
 
-      - name: Run linters
-        run: |
-          bundle exec rubocop
-          bundle exec brakeman
-          yarn run lint
 
