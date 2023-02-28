@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
 
     env:
@@ -62,7 +62,7 @@ jobs:
 
       - name: Run tests
         run: bundle exec rspec
-  lint:
+  linters:
     runs-on: ubuntu-latest
 
     steps:
