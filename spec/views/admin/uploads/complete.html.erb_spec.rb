@@ -1,4 +1,4 @@
-RSpec.describe "uploads/complete.html.erb" do
+RSpec.describe "admin/uploads/complete.html.erb" do
   it "renders results details for the upload", :aggregate_failures do
     assign(:results, { added: 1009, failed: 1, errors: [20] })
     render

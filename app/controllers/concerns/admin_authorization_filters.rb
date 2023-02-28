@@ -18,6 +18,7 @@ module AdminAuthorizationFilters
         end
 
         unless verified
+          Rails.logger.error("#{user_ip} not allowed access")
           render file: "public/403.html", status: :forbidden, layout: false
         end
       end

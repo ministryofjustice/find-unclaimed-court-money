@@ -1,0 +1,11 @@
+*.log
+*.dev
+.git*
+log
+tmp
+coverage
+node_modules
+config/docker
+spec
+public/assets
+README.md

@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   resources :cases, param: :account_number, only: [:show]
 
-  constraints subdomain: "admin" do
-    get "/", to: "sessions#new", as: :admin
+  namespace :admin do
+    get "/", to: "sessions#new"
     post "/", to: "sessions#create", as: :login
     delete "/logout", to: "sessions#destroy"
 

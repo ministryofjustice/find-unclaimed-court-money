@@ -1,4 +1,4 @@
-RSpec.describe "uploads/new.html.erb" do
+RSpec.describe "admin/uploads/new.html.erb" do
   it "renders the form for a file upload", :aggregate_failures do
     assign(:upload, build(:upload, file: nil))
     render
