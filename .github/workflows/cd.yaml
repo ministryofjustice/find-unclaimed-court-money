@@ -11,17 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run linters
-        run: bundle exec rubocop
-
-  test:
+  build:
     runs-on: ubuntu-latest
 
     env:
@@ -66,7 +56,20 @@ jobs:
 
       - name: Precompile assets
         run: bin/rails assets:precompile
+  lint:
+    needs: build
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run linters
+        run: bundle exec rubocop
+
+  test:
+    needs: build
+
+    steps:
       - name: Setup test database
         run: bin/rails db:prepare
 
