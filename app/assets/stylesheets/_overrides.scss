@@ -7,7 +7,9 @@
   border-top: 2px solid #1d70b8;
 }
 
-button.govuk-back-link {
-  background: none;
-  border: none;
+.button_to {
+  .govuk-back-link {
+    background: none;
+    border: none;
+  }
 }
