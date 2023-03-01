@@ -124,7 +124,6 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
-          cat config/kubernetes/dev/migrations.tpl | envsubst > config/kubernetes/dev/migrations.yaml
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_CERT }}
