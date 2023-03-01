@@ -83,7 +83,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: tests
+    needs: [tests, linters]
     # if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
@@ -119,7 +119,7 @@ jobs:
       - name: Update image tag
         env:
           ECR_URL: ${{ secrets.ECR_URL_DEV }}
-        run: export IMAGE_TAG=${{ github.sha }} && cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
+        run: export IMAGE_TAG=${{ github.sha }} && cat /config/kubernetes/dev/deployment.tpl | envsubst > /config/kubernetes/dev/deployment.yaml
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_CERT }}
