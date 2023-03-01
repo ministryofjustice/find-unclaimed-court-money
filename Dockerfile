@@ -4,7 +4,11 @@ FROM ruby:3.1.3-alpine as builder
 WORKDIR /app
 
 # Install dependencies
-RUN apk add --no-cache tzdata build-base yarn postgresql14-dev
+RUN apk add --no-cache \
+    build-base \
+    postgresql14-dev \
+    tzdata \
+    yarn
 
 # Copy required files
 COPY .ruby-version Gemfile* ./
@@ -29,8 +33,8 @@ RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 \
     bundle exec rails assets:precompile
 
 # Copy govuk assets
-RUN cp -r node_modules/govuk-frontend/govuk/assets/fonts public/assets/
-RUN cp -r node_modules/govuk-frontend/govuk/assets/images public/assets/
+RUN cp -r node_modules/govuk-frontend/govuk/assets/fonts public/assets/ && \
+    cp -r node_modules/govuk-frontend/govuk/assets/images public/assets/
 
 # Cleanup to save space in the production image
 RUN rm -rf node_modules log/* tmp/* /tmp && \
@@ -49,7 +53,7 @@ WORKDIR /app
 # libpq: required to run postgres, tzdata: required to set timezone
 RUN apk add --no-cache libpq tzdata
 
-# add non-root user and group with alpine first available uid, 1000
+# Add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
     adduser -u 1000 -S appuser -G appgroup
 
@@ -59,14 +63,14 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 # Create log and tmp
 RUN mkdir -p log tmp
-RUN chown -R appuser:appgroup log tmp db
+RUN chown -R appuser:appgroup db log tmp
 
 # Set user
 USER 1000
 
-ARG COMMIT_ID
 ARG BUILD_DATE
 ARG BUILD_TAG
-ENV APP_GIT_COMMIT=${COMMIT_ID}
+ARG COMMIT_ID
 ENV APP_BUILD_DATE=${BUILD_DATE}
 ENV APP_BUILD_TAG=${BUILD_TAG}
+ENV APP_GIT_COMMIT=${COMMIT_ID}

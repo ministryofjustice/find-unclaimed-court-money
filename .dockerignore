@@ -4,6 +4,8 @@
 log
 tmp
 coverage
+bin
+.github
 node_modules
 spec
 public/assets
