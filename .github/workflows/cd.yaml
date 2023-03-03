@@ -108,7 +108,7 @@ jobs:
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
           region: eu-west-2
           local-image: app
-          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}, ${{ secrets.ECR_NAME }}:dev.latest
+          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
 
   deploy-dev:
     runs-on: ubuntu-latest
