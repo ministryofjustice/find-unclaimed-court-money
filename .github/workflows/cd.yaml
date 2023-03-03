@@ -113,6 +113,7 @@ jobs:
   deploy-dev:
     runs-on: ubuntu-latest
     needs: build
+    environment: dev
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
@@ -142,6 +143,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: deploy-dev
+    environment: staging
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
@@ -170,7 +172,8 @@ jobs:
           kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/staging
   deploy-production:
     runs-on: ubuntu-latest
-    needs: deploy-dev
+    needs: deploy-staging
+    environment: production
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
