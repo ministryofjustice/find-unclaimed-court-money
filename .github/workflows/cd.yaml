@@ -139,3 +139,61 @@ jobs:
       - name: Apply the updated manifest
         run: |
           kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/dev
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update image tag
+        env:
+          ECR_URL: ${{ secrets.ECR_URL }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cat config/kubernetes/staging/deployment.tpl | envsubst > config/kubernetes/staging/deployment.yaml
+          cat config/kubernetes/staging/migrations.tpl | envsubst > config/kubernetes/staging/migrations.yaml
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+      - name: Apply the updated manifest
+        run: |
+          kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/staging
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update image tag
+        env:
+          ECR_URL: ${{ secrets.ECR_URL }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cat config/kubernetes/production/deployment.tpl | envsubst > config/kubernetes/production/deployment.yaml
+          cat config/kubernetes/production/migrations.tpl | envsubst > config/kubernetes/production/migrations.yaml
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+      - name: Apply the updated manifest
+        run: |
+          kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/production
