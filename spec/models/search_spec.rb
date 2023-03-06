@@ -33,6 +33,12 @@ RSpec.describe Search do
     it { is_expected.not_to be_valid }
   end
 
+  context "with only dates" do
+    subject(:search) { build(:search, keywords: nil, date_from: { 3 => 31, 2 => 1, 1 => 2020 }, date_to: { 3 => 31, 2 => 1, 1 => 2021 }) }
+
+    it { is_expected.to be_valid }
+  end
+
   describe "#results" do
     it "orders by most recent case date" do
       case_2000 = create(:case, case_name: "test", case_date: Date.new(2000))
