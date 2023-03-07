@@ -15,8 +15,8 @@ gem "jbuilder"
 gem "pagy"
 gem "pg"
 gem "puma", "~> 5.0"
-gem "sentry-ruby"
 gem "sentry-rails"
+gem "sentry-ruby"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "cssbundling-rails", "~> 1.1"
