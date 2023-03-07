@@ -4,8 +4,8 @@
 log
 tmp
 coverage
+.github
 node_modules
-config/docker
 spec
 public/assets
 README.md

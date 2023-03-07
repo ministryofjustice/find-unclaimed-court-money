@@ -2,18 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: find-unclaimed-court-money-ingress
-  namespace: find-unclaimed-court-money-dev
+  namespace: find-unclaimed-court-money-production
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: find-unclaimed-court-money-ingress-find-unclaimed-court-money-dev-green
+    external-dns.alpha.kubernetes.io/set-identifier: find-unclaimed-court-money-ingress-find-unclaimed-court-money-production-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: app-secrets
 spec:
   tls:
   - hosts:
-    - dev-find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
+    - find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
   rules:
-  - host: dev-find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
+  - host: find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
     http:
       paths:
       - path: /

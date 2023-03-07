@@ -8,12 +8,12 @@ spec:
     spec:
       containers:
       - name: migrations
-        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/central-digital-product-team/find-unclaimed-court-money-dev-ecr:latest
+        image: ${ECR_URL}:${IMAGE_TAG}
         command: ["./config/docker/entrypoint-migrations.sh"]
         env:
           - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: rds-postgresql-instance-output
-                  key: url
+            valueFrom:
+              secretKeyRef:
+                name: rds-postgresql-instance-output
+                key: url
       restartPolicy: OnFailure
