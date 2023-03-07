@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: find-unclaimed-court-money-service
+  labels:
+    app: find-unclaimed-court-money-service
+spec:
+  ports:
+  - port: 3000
+    name: http
+    targetPort: 3000
+  selector:
+    app: find-unclaimed-court-money
