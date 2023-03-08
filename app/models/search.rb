@@ -68,5 +68,9 @@ private
     if date_to.is_a?(Hash)
       errors.add(:date_to, :invalid)
     end
+
+    if date_from.is_a?(Date) && date_to.is_a?(Date)
+      errors.delete(:keywords)
+    end
   end
 end
