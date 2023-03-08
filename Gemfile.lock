@@ -337,6 +337,8 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.2)
   rspec-rails
   rubocop-govuk
+  sentry-rails
+  sentry-ruby
   simplecov
   sprockets (~> 4.2)
   sprockets-rails (~> 3.4)
