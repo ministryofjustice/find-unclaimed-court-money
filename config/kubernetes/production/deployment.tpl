@@ -3,7 +3,12 @@ kind: Deployment
 metadata:
   name: find-unclaimed-court-money
 spec:
-  replicas: 1
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: find-unclaimed-court-money
