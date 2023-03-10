@@ -30,8 +30,7 @@ $ cd find-unclaimed-court-money
 
 If you don't have `rbenv` already installed, install it as follows:
 ```
-brew install rbenv
-rbenv init
+$ brew install rbenv ruby-build
 ```
 
 Use `rbenv` to install the latest version of ruby as defined in `.ruby-version` (make sure you are in the repo path):
@@ -41,31 +40,43 @@ $ rbenv install
 $ rbenv init
 $ rbenv rehash
 ```
+
 Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` or equivalent file accordingly, then start a new terminal and navigate to the repo directory.
 
 #### Database Setup
 The application uses postgresql
 ```
-brew install postgresql
+$ brew install postgresql
 ```
 
 Use the setup command to install gems and create the database with seed data
 ```
-bin/setup
+$ bin/setup
 ```
 
 #### Assets
 Yarn and node are required to build css and js assets
 ```
-brew install node
-brew install yarn
+$ brew install node
+$ brew install yarn
 ```
-
 
 #### Running locally
 Use the dev command to run the application
 ```
-bin/dev
+$ bin/dev
 ```
 
+If this dev command fails with the message "foreman: not found" install the foreman gem manually:
+```
+$ gem install foreman
+```
+Then append `export PATH="~/.gem/bin:$PATH"` to your `~/.bash_profile` or equivalent file accordingly, then start a new terminal and navigate to the repo directory.
 
+Equally, if the dev command fails with the message "terminated by SIGTERM" and the build output also states "/bin/sh: esbuild: command not found" run the commands:
+```
+$ yarn add esbuild
+```
+```
+$ yarn add sass
+```
