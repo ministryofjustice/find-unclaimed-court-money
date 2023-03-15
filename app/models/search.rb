@@ -36,7 +36,9 @@ class Search
   end
 
   def results
+    current_date = Date.today
     scope = nil
+    base_date = (current_date - 90)
 
     terms.each do |term|
       clause = Case.for_term(term)
@@ -45,10 +47,14 @@ class Search
 
     if date_from.present?
       scope = scope.from_date(date_from)
+    else 
+      scope = base_date
     end
 
     if date_to.present?
       scope = scope.to_date(date_to)
+    else
+      scope = scope.to_date(Date.today)
     end
 
     scope.order(case_date: :desc)
