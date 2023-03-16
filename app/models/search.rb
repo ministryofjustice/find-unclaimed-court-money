@@ -11,23 +11,26 @@ class Search
 
   def date_from=(value)
     if value.nil?
-      @date_from = Date.new(1900,01,01)
+      @date_from = Date.new(1900, 1, 1)
+      puts "Date from - default: #{@date_from}"
     else
       year = value[1]
       month = value[2]
       day = value[3]
-    
+
       @date_from = begin
         Date.new(year, month, day)
-        rescue TypeError, Date::Error
+      rescue TypeError, Date::Error
         value
-      end  
+      end
+      puts "Date from - user input: #{@date_from}"
     end
   end
 
   def date_to=(value)
     if value.nil?
       @date_to = Date.today
+      puts "Default date to: #{@date_to}"
     else
       year = value[1]
       month = value[2]
@@ -35,24 +38,21 @@ class Search
 
       @date_to = begin
         Date.new(year, month, day)
-        rescue TypeError, Date::Error
+      rescue TypeError, Date::Error
         value
       end
+      puts "Date to - user input: #{@date_to}"
     end
-
-    
   end
 
   def results
     scope = nil
-    
+
     terms.each do |term|
       clause = Case.for_term(term)
       scope = scope.nil? ? clause : scope.or(clause)
     end
 
-    puts "Date from: #{date_from}"
-    puts "Date to: #{date_to}"
     scope.order(case_date: :desc)
   end
 
