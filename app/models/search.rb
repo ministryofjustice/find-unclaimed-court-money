@@ -10,53 +10,49 @@ class Search
   validate :validate_dates
 
   def date_from=(value)
-    return if value.nil?
-
-    year = value[1]
-    month = value[2]
-    day = value[3]
-    @date_from = begin
-      Date.new(year, month, day)
-    rescue TypeError, Date::Error
-      value
+    if value.nil?
+      @date_from = Date.new(1900,01,01)
+    else
+      year = value[1]
+      month = value[2]
+      day = value[3]
+    
+      @date_from = begin
+        Date.new(year, month, day)
+        rescue TypeError, Date::Error
+        value
+      end  
     end
   end
 
   def date_to=(value)
-    return if value.nil?
+    if value.nil?
+      @date_to = Date.today
+    else
+      year = value[1]
+      month = value[2]
+      day = value[3]
 
-    year = value[1]
-    month = value[2]
-    day = value[3]
-    @date_to = begin
-      Date.new(year, month, day)
-    rescue TypeError, Date::Error
-      value
+      @date_to = begin
+        Date.new(year, month, day)
+        rescue TypeError, Date::Error
+        value
+      end
     end
+
+    
   end
 
   def results
-    current_date = Date.today
     scope = nil
-    base_date = (current_date - 90)
-
+    
     terms.each do |term|
       clause = Case.for_term(term)
       scope = scope.nil? ? clause : scope.or(clause)
     end
 
-    if date_from.present?
-      scope = scope.from_date(date_from)
-    else 
-      scope = base_date
-    end
-
-    if date_to.present?
-      scope = scope.to_date(date_to)
-    else
-      scope = scope.to_date(Date.today)
-    end
-
+    puts "Date from: #{date_from}"
+    puts "Date to: #{date_to}"
     scope.order(case_date: :desc)
   end
 
