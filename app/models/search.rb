@@ -11,7 +11,7 @@ class Search
 
   def date_from=(value)
     if value.nil?
-      @date_from = Date.new(1900, 1, 1)
+      @date_from = Date.new(1700, 1, 1)
       puts "Date from - default: #{@date_from}"
     else
       year = value[1]
