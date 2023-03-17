@@ -12,36 +12,16 @@ class Search
   def date_from=(value)
     if value.nil?
       @date_from = Date.new(1700, 1, 1)
-      puts "Date from - default: #{@date_from}"
     else
-      year = value[1]
-      month = value[2]
-      day = value[3]
-
-      @date_from = begin
-        Date.new(year, month, day)
-      rescue TypeError, Date::Error
-        value
-      end
-      puts "Date from - user input: #{@date_from}"
+      build_date(value, "from")
     end
   end
 
   def date_to=(value)
     if value.nil?
-      @date_to = Date.today
-      puts "Default date to: #{@date_to}"
+      @date_to = Time.zone.today
     else
-      year = value[1]
-      month = value[2]
-      day = value[3]
-
-      @date_to = begin
-        Date.new(year, month, day)
-      rescue TypeError, Date::Error
-        value
-      end
-      puts "Date to - user input: #{@date_to}"
+      build_date(value, "to")
     end
   end
 
@@ -81,6 +61,26 @@ private
 
     if date_from.is_a?(Date) && date_to.is_a?(Date)
       errors.delete(:keywords)
+    end
+  end
+
+  def build_date(value, field)
+    year = value[1]
+    month = value[2]
+    day = value[3]
+
+    if field == "from"
+      @date_from = begin
+        Date.new(year, month, day)
+      rescue TypeError, Date::Error
+        value
+      end
+    else
+      @date_to = begin
+        Date.new(year, month, day)
+      rescue TypeError, Date::Error
+        value
+      end
     end
   end
 end
