@@ -11,9 +11,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dev-find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
+    - dev.find-unclaimed-court-money.service.justice.gov.uk
+    secretName: find-unclaimed-court-money-cert
   rules:
-  - host: dev-find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
+  - host: dev.find-unclaimed-court-money.service.justice.gov.uk
     http:
       paths:
       - path: /
