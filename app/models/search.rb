@@ -33,18 +33,9 @@ class Search
       scope = scope.nil? ? clause : scope.or(clause)
     end
 
-    if scope.nil? 
-      scope = Case.to_date(date_from)
-    else  
-      scope = scope.from_date(date_from)
-    end
-
-    if scope.nil? 
-      scope = Case.to_date(date_to)
-    else  
-      scope = scope.to_date(date_to)
-    end
-    puts scope.to_sql
+    scope = Case if scope.nil?
+    scope = scope.from_date(date_from)
+    scope = scope.to_date(date_to)
     scope.order(case_date: :desc)
 
   end
