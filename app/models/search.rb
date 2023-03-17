@@ -53,6 +53,14 @@ class Search
       scope = scope.nil? ? clause : scope.or(clause)
     end
 
+    if date_from.present?
+      scope = scope.from_date(date_from)
+    end
+
+    if date_to.present?
+      scope = scope.to_date(date_to)
+    end
+
     scope.order(case_date: :desc)
   end
 
