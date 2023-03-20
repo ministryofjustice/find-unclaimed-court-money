@@ -37,7 +37,6 @@ class Search
     scope = scope.from_date(date_from)
     scope = scope.to_date(date_to)
     scope.order(case_date: :desc)
-
   end
 
 private
