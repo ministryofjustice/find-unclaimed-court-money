@@ -30,7 +30,7 @@ en:
         search:
           attributes:
             keywords:
-              blank: Keywords can't be blank
+              blank: Please enter Keywords and/or a valid date range
               too_short: Keywords is too short (minimum is %{count} characters)
             date_from:
               invalid: Date from must be a valid date or omitted

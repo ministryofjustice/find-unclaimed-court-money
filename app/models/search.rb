@@ -10,19 +10,13 @@ class Search
   validate :validate_dates
 
   def date_from=(value)
-    if value.nil?
-      @date_from = Date.new(1700, 1, 1)
-    else
-      build_date(value, "from")
-    end
+    return if value.nil?
+    build_date(value, "from")
   end
 
   def date_to=(value)
-    if value.nil?
-      @date_to = Time.zone.today
-    else
-      build_date(value, "to")
-    end
+    return if value.nil?
+    build_date(value, "to")
   end
 
   def results
