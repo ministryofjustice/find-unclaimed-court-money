@@ -11,11 +11,13 @@ class Search
 
   def date_from=(value)
     return if value.nil?
+
     build_date(value, "from")
   end
 
   def date_to=(value)
     return if value.nil?
+
     build_date(value, "to")
   end
 
