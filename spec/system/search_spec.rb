@@ -28,6 +28,6 @@ RSpec.describe "Search" do
     click_button "Search"
 
     expect(page).to have_selector("h2", text: "There is a problem")
-    expect(page).to have_selector("a", text: "Please enter Keywords and/or a valid date range")
+    expect(page).to have_selector("a", text: "Keywords can't be blank")
   end
 end

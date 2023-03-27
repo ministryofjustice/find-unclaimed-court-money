@@ -12,13 +12,13 @@ class Search
   def date_from=(value)
     return if value.nil?
 
-    build_date(value, "from")
+    @date_from = build_date(value)
   end
 
   def date_to=(value)
     return if value.nil?
 
-    build_date(value, "to")
+    @date_to = build_date(value)
   end
 
   def results
@@ -55,23 +55,13 @@ private
     end
   end
 
-  def build_date(value, field)
+  def build_date(value)
     year = value[1]
     month = value[2]
     day = value[3]
 
-    if field == "from"
-      @date_from = begin
-        Date.new(year, month, day)
-      rescue TypeError, Date::Error
-        value
-      end
-    else
-      @date_to = begin
-        Date.new(year, month, day)
-      rescue TypeError, Date::Error
-        value
-      end
-    end
+    Date.new(year, month, day)
+  rescue TypeError, Date::Error
+    value
   end
 end
