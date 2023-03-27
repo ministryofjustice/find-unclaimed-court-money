@@ -1,6 +1,5 @@
 RSpec.describe "Search" do
   before do
-    # create(:case, case_name: "Test Case")
     create(:case, case_name: "Test Case", case_date: "20/06/1967")
     driven_by(:rack_test)
   end
