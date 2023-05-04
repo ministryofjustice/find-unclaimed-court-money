@@ -12,6 +12,9 @@ spec:
   tls:
   - hosts:
     - find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
+  - hosts:
+    - find-unclaimed-court-money.service.justice.gov.uk
+    secretName: find-unclaimed-court-money-cert
   rules:
   - host: find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk
     http:
@@ -23,3 +26,14 @@ spec:
             name: find-unclaimed-court-money-service
             port:
               number: 3000
+  - host: find-unclaimed-court-money.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: find-unclaimed-court-money-service
+            port:
+              number: 3000
+
