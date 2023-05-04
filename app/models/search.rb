@@ -12,27 +12,13 @@ class Search
   def date_from=(value)
     return if value.nil?
 
-    year = value[1]
-    month = value[2]
-    day = value[3]
-    @date_from = begin
-      Date.new(year, month, day)
-    rescue TypeError, Date::Error
-      value
-    end
+    @date_from = build_date(value)
   end
 
   def date_to=(value)
     return if value.nil?
 
-    year = value[1]
-    month = value[2]
-    day = value[3]
-    @date_to = begin
-      Date.new(year, month, day)
-    rescue TypeError, Date::Error
-      value
-    end
+    @date_to = build_date(value)
   end
 
   def results
@@ -43,14 +29,9 @@ class Search
       scope = scope.nil? ? clause : scope.or(clause)
     end
 
-    if date_from.present?
-      scope = scope.from_date(date_from)
-    end
-
-    if date_to.present?
-      scope = scope.to_date(date_to)
-    end
-
+    scope = Case if scope.nil?
+    scope = scope.from_date(date_from)
+    scope = scope.to_date(date_to)
     scope.order(case_date: :desc)
   end
 
@@ -72,5 +53,15 @@ private
     if date_from.is_a?(Date) && date_to.is_a?(Date)
       errors.delete(:keywords)
     end
+  end
+
+  def build_date(value)
+    year = value[1]
+    month = value[2]
+    day = value[3]
+
+    Date.new(year, month, day)
+  rescue TypeError, Date::Error
+    value
   end
 end
