@@ -5,7 +5,7 @@ metadata:
   namespace: find-unclaimed-court-money-staging
   annotations:
     external-dns.alpha.kubernetes.io/set-identifier: find-unclaimed-court-money-ingress-find-unclaimed-court-money-staging-green
-    external-dns.alpha.kubernetes.io/aws-weight: "0"
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: app-secrets
 spec:
