@@ -111,35 +111,33 @@ jobs:
           image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
 
   deploy-dev:
-    runs-on: ubuntu-latest
-    needs: build
-    environment: dev
-    env:
-      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Update image tag
-        env:
-          ECR_URL: ${{ secrets.ECR_URL }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
-          cat config/kubernetes/dev/migrations.tpl | envsubst > config/kubernetes/dev/migrations.yaml
-      - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
-        run: |
-          echo "${KUBE_CERT}" > ca.crt
-          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
-          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
-          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
-          kubectl config use-context ${KUBE_CLUSTER}
-      - name: Apply the updated manifest
-        run: |
-          kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/dev
+    ecr:
+      runs-on: ubuntu-latest
+      permissions:
+        id-token: write # This is required for requesting the JWT
+        contents: read  # This is required for actions/checkout
+      steps:
+        # Checkout GitHub repository
+        - uses: actions/checkout@v3
+
+        # Assume role in Cloud Platform
+        - uses: aws-actions/configure-aws-credentials@v2
+          with:
+            role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+            aws-region: ${{ vars.ECR_REGION }}
+
+        # Login to container repository
+        - uses: aws-actions/amazon-ecr-login@v1
+          id: login-ecr
+
+        # Build and push a Docker image to the container repository
+        - run: |
+            docker build -t $REGISTRY/$REPOSITORY:gha-$IMAGE_TAG .
+            docker push $REGISTRY/$REPOSITORY:gha-$IMAGE_TAG
+          env:
+            REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+            IMAGE_TAG: ${{ github.sha }}
   deploy-staging:
     runs-on: ubuntu-latest
     needs: deploy-dev
