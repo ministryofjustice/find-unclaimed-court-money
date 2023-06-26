@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: migrations
-        image: ${IMAGE_TAG}
+        image: ${ECR_URL}:${IMAGE_TAG}
         command: ["./config/docker/entrypoint-migrations.sh"]
         env:
           - name: DATABASE_URL
