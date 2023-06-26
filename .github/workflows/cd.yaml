@@ -122,8 +122,8 @@ jobs:
       # Assume role in Cloud Platform
       - uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
-          aws-region: ${{ vars.ECR_REGION }}
+          role-to-assume: ${{ secrets.DEV_ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.DEV_ECR_REGION }}
 
       # Login to container repository
       - uses: aws-actions/amazon-ecr-login@v1
@@ -135,7 +135,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:gha-$IMAGE_TAG
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+          REPOSITORY: ${{ vars.DEV_ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
   deploy-staging:
     runs-on: ubuntu-latest
