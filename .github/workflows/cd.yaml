@@ -103,9 +103,10 @@ jobs:
       # Build and push a Docker image to the container repository
       - run: |
           docker build -t $REGISTRY/$REPOSITORY:gha-$IMAGE_TAG .
-          docker push $ECR_URL:$IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY:gha-$IMAGE_TAG
         env:
-          ECR_URL: ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
 
   deploy-dev:
@@ -119,8 +120,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Update image tag
         env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
