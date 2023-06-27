@@ -15,7 +15,7 @@ spec:
       containers:
         - name: webapp
           imagePullPolicy: Always
-          image: ${ECR_URL}:${IMAGE_TAG}
+          image: ${REPOSITORY}:${IMAGE_TAG}
           ports:
             - containerPort: 3000
           command: ["./config/docker/entrypoint-webapp.sh"]
@@ -54,7 +54,7 @@ spec:
             timeoutSeconds: 15
       initContainers:
         - name: pending-migrations
-          image: ${ECR_URL}:${IMAGE_TAG}
+          image: ${REPOSITORY}:${IMAGE_TAG}
           command:
             - rake
             - db:abort_if_pending_migrations

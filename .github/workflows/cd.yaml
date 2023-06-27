@@ -123,7 +123,6 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
-          ECR_URL: ${{ $REGISTRY/$REPOSITORY:gha-}}
         run: |
           cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
           cat config/kubernetes/dev/migrations.tpl | envsubst > config/kubernetes/dev/migrations.yaml
