@@ -121,14 +121,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      # Login to container repository
-      - uses: aws-actions/amazon-ecr-login@v1
-        id: login-ecr
-
       - name: Update image tag
         env:
-          ECR_URL: ${{ vars.ECR_REPOSITORY }}
+          ECR_URL: ${{ vars.ECR_URL }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
