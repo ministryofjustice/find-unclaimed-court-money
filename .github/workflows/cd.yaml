@@ -126,6 +126,7 @@ jobs:
       - name: Update image tag
         env:
           ECR_URL: ${{ vars.ECR_URL }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           cat config/kubernetes/dev/deployment.tpl | envsubst > config/kubernetes/dev/deployment.yaml
           cat config/kubernetes/dev/migrations.tpl | envsubst > config/kubernetes/dev/migrations.yaml
