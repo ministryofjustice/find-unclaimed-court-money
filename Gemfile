@@ -6,7 +6,7 @@ ruby "3.1.3"
 gem "rails", ">= 7.0.4.3"
 
 gem "activerecord-import"
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.19"
 gem "bootsnap", require: false
 gem "govuk_app_config"
 gem "govuk-components"
