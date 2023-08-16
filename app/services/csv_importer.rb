@@ -15,7 +15,6 @@ class CsvImporter
         check_character: row[3],
         date_account: row[4],
         credit_detail: row[5],
-        case_link: row[6],
       )
     rescue StandardError
       failed += 1
