@@ -5,12 +5,11 @@ RSpec.describe CaseBuilder do
   let(:check_character) { "A" }
   let(:date_account) { "20/12/1955" }
   let(:credit_detail) { "the credit detail" }
-  let(:account_link) { "link to account detail"}
 
   describe ".build" do
     let(:kase) do
       described_class.build(
-        case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:, account_link:,
+        case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:,
       )
     end
 
@@ -21,7 +20,6 @@ RSpec.describe CaseBuilder do
       expect(kase.date_account_opened).to eq date_account
       expect(kase.credit_details).to eq credit_detail
       expect(kase.case_date).to eq Date.new(1955, 12, 20)
-      expect(kase.account_link).to eq account_link
     end
   end
 end
