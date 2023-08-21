@@ -39,6 +39,18 @@ RSpec.describe Search do
     it { is_expected.to be_valid }
   end
 
+  context "with only carried_over year" do
+    subject(:search) { described_class.new(carried_over: "2022") }
+
+    it { is_expected.not_to be_valid }
+  end
+
+  context "with invalid carried_over year" do
+    subject(:search) { described_class.new(keywords: "test", carried_over: "abc") }
+
+    it { is_expected.not_to be_valid }
+  end
+
   describe "#results" do
     it "orders by most recent case date" do
       case_2000 = create(:case, case_name: "test", case_date: Date.new(2000))
@@ -57,6 +69,7 @@ RSpec.describe Search do
         allow(Case).to receive(:for_term).and_return(kase)
         allow(kase).to receive(:to_date).and_return(kase)
         allow(kase).to receive(:from_date).and_return(kase)
+        allow(kase).to receive(:carried_over).and_return(kase)
         allow(kase).to receive(:order).and_return(kase)
       end
 
@@ -79,6 +92,11 @@ RSpec.describe Search do
         search.keywords = "test1,test2"
         allow(Case).to receive(:for_term).with("test1").and_return(kase)
         allow(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
+        search.results
+      end
+
+      it "filters by carried_over year" do
+        expect(kase).to receive(:carried_over).with(search.carried_over)
         search.results
       end
     end

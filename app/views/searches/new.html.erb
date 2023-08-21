@@ -13,11 +13,15 @@
 
       <p class="govuk-body">You can search using keyword and/or date. Entering specific information will improve the accuracy of your search results.</p>
       <%= f.govuk_text_field :keywords, label: { size: "m" } %>
+
       <%= f.govuk_fieldset legend: { text: 'Search a date range' } do %>
         <%= f.govuk_date_field :date_from, legend: { size: "s" } %>
         <%= f.govuk_date_field :date_to, legend: { size: "s" } %>
-        <%= f.govuk_submit "Search" %>
       <% end %>
+
+      <%= f.govuk_text_field :carried_over, label: { size: "s" }, width: 4 %>
+
+      <%= f.govuk_submit "Search" %>
     <% end %>
   </div>
 </div>

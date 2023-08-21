@@ -3,7 +3,7 @@ class Search
   include ActiveModel::Validations
   include ActiveRecord::AttributeAssignment
 
-  attr_accessor :keywords
+  attr_accessor :keywords, :carried_over
   attr_reader :date_from, :date_to
 
   validates :keywords, presence: true, length: { minimum: 3 }
@@ -32,6 +32,7 @@ class Search
     scope = Case if scope.nil?
     scope = scope.from_date(date_from)
     scope = scope.to_date(date_to)
+    scope = scope.carried_over(carried_over) if carried_over&.present?
     scope.order(case_date: :desc)
   end
 
@@ -52,6 +53,10 @@ private
 
     if date_from.is_a?(Date) && date_to.is_a?(Date)
       errors.delete(:keywords)
+    end
+
+    if carried_over.present? && (carried_over.to_i < 1000 || carried_over.to_i > Date.current.year)
+      errors.add(:carried_over, :invalid)
     end
   end
 
