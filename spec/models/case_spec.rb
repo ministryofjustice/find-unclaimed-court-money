@@ -39,6 +39,20 @@ RSpec.describe Case do
     end
   end
 
+  describe ".carried_over" do
+    let(:case_carried_over_1985) { create(:case, year_carried_over: "1985") }
+    let(:case_carried_over_1986) { create(:case, year_carried_over: "1986") }
+
+    before do
+      case_carried_over_1985
+      case_carried_over_1986
+    end
+
+    it "finds cases with the keyword in case_name" do
+      expect(described_class.carried_over("1985")).to match_array [case_carried_over_1985]
+    end
+  end
+
   describe ".for_term" do
     let!(:case_chicken) { create(:case, case_name: "contains the keyword ChickeN that we are looking for") }
     let!(:case_turkey) { create(:case, credit_details: "contains the keyword TurkeY that we are looking for") }

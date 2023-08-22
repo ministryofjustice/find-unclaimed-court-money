@@ -36,6 +36,8 @@ en:
               invalid: Date from must be a valid date or omitted
             date_to:
               invalid: Date to must be a valid date or omitted
+            carried_over:
+              invalid: Year carried over must be a valid year or omitted
         upload:
           attributes:
             file:
@@ -45,6 +47,7 @@ en:
     label:
       search:
         keywords: Search by keywords
+        carried_over: Search by year carried over
       login:
         name: Login name
       upload:
@@ -58,3 +61,4 @@ en:
         keywords: For example, name, location, case type, organisation and/or court account number (has 9 characters, for example 27891231P)
         date_from: For example, 27 3 2018
         date_to: For example, 27 3 2021
+        carried_over: For example, 2022

@@ -3,5 +3,6 @@ FactoryBot.define do
     keywords { "test" }
     date_from { { 3 => 1, 2 => 1, 1 => 1990 } }
     date_to { { 3 => 31, 2 => 12, 1 => 2020 } }
+    carried_over { "2022" }
   end
 end
