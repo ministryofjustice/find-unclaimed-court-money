@@ -42,11 +42,11 @@ RSpec.describe Search do
   context "with only carried_over year" do
     subject(:search) { described_class.new(carried_over: "2022") }
 
-    it { is_expected.not_to be_valid }
+    it { is_expected.to be_valid }
   end
 
   context "with invalid carried_over year" do
-    subject(:search) { described_class.new(keywords: "test", carried_over: "abc") }
+    subject(:search) { described_class.new(carried_over: "abc") }
 
     it { is_expected.not_to be_valid }
   end
