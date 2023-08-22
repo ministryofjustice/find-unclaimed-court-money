@@ -47,7 +47,7 @@ en:
     label:
       search:
         keywords: Search by keywords
-        carried_over: Year carried over
+        carried_over: Search by year carried over
       login:
         name: Login name
       upload:
