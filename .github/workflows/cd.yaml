@@ -29,7 +29,7 @@ jobs:
       DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/find_unclaimed_court_money_test"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
@@ -91,7 +91,7 @@ jobs:
       contents: read  # This is required for actions/checkout
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Assume role in Cloud Platform
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -133,7 +133,7 @@ jobs:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Update image tag
         env:
           ECR_URL: ${{ vars.ECR_URL }}
@@ -163,7 +163,7 @@ jobs:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Update image tag
         env:
           ECR_URL: ${{ vars.ECR_URL }}
@@ -193,7 +193,7 @@ jobs:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Update image tag
         env:
           ECR_URL: ${{ vars.ECR_URL }}
