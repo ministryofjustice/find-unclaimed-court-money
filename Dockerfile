@@ -14,11 +14,9 @@ RUN apk add --no-cache \
 COPY .ruby-version Gemfile* ./
 
 # Install gems and remove gem cache
-RUN bundler -v && \
-    bundle config set no-cache 'true' && \
-    bundle config set frozen 'true' && \
-    bundle config set no-binstubs 'true' && \
-    bundle config set without 'development test' && \
+RUN gem install bundler -v 2.4.19
+RUN bundle config deployment true && \
+    bundle config without development test && \
     bundle install --jobs 4 --retry 3
 
 # Install node packages defined in package.json
