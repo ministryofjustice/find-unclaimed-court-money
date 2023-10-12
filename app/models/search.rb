@@ -32,7 +32,7 @@ class Search
     scope = Case if scope.nil?
     scope = scope.from_date(date_from)
     scope = scope.to_date(date_to)
-    scope = scope.carried_over(carried_over) if carried_over&.present?
+    scope = scope.carried_over(carried_over) if carried_over.present?
     scope.order(case_date: :desc)
   end
 
