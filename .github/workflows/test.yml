@@ -76,7 +76,7 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
-  call-build-and-deploy:
+  build-and-deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: test
     uses: ./.github/workflows/deploy.yml
