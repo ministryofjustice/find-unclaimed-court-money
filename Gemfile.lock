@@ -537,7 +537,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails (~> 1.2)
   debug
-  factory_bot_rails
+  factory_bot_rails (< 6.4.0)
   govuk-components
   govuk_app_config
   govuk_design_system_formbuilder
