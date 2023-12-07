@@ -24,7 +24,7 @@
 
 
 /public/assets
-
+untrac
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -36,3 +36,6 @@
 /coverage
 
 **/.DS_Store
+
+# Ignore RubyMine project files
+/.idea/
