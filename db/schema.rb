@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_15_163408) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_15_171937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_163408) do
     t.date "case_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "dormancy_date"
-    t.text "final_claim_date"
+    t.string "dormancy_date"
+    t.string "final_claim_date"
     t.index ["account_number"], name: "index_cases_on_account_number", unique: true
   end
 
