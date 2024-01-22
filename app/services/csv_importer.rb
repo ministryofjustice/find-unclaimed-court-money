@@ -15,8 +15,8 @@ class CsvImporter
         check_character: row[3],
         date_account: row[4],
         credit_detail: row[5],
-        date_dormant: row[6],
-        date_final_claim: row[7],
+        last_claim_date: row[6],
+        initial_dormancy: row[7],
       )
     rescue StandardError
       failed += 1
