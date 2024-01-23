@@ -10,19 +10,27 @@ RSpec.describe "cases/show.html.erb" do
     expect(rendered).to have_text(kase.account_number)
   end
 
-  it "displays the case year carried over" do
-    expect(rendered).to have_text(kase.year_carried_over)
-  end
-
   it "displays the case name" do
     expect(rendered).to have_text(kase.case_name)
+  end
+
+  it "displays the case credit details" do
+    expect(rendered).to have_text(kase.credit_details)
   end
 
   it "displays the case date account opened" do
     expect(rendered).to have_text(kase.date_account_opened)
   end
 
-  it "displays the case credit details" do
-    expect(rendered).to have_text(kase.credit_details)
+  it "displays the case year carried over" do
+    expect(rendered).to have_text(kase.year_carried_over)
+  end
+
+  it "displays the case initial date of dormancy" do
+    expect(rendered).to have_text(kase.initial_dormancy)
+  end
+
+  it "displays the case last date to submit a claim" do
+    expect(rendered).to have_text(kase.last_claim_date)
   end
 end
