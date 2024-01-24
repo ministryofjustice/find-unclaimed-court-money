@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_23_111445) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_19_155857) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cases", force: :cascade do |t|
-    t.string "account_number", null: false
-    t.string "year_carried_over", null: false
-    t.string "case_name", null: false
-    t.string "date_account_opened", null: false
+    t.string "account_number"
+    t.string "year_carried_over"
+    t.string "case_name"
+    t.string "date_account_opened"
     t.string "credit_details"
-    t.date "case_date", null: false
+    t.date "case_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "last_claim_date"
