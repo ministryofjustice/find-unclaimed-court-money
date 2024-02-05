@@ -1,5 +1,5 @@
 class CaseBuilder
-  def self.build(case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:, last_claim_date:, initial_dormancy:)
+  def self.build(case_number:, year_carried:, prime_index:, check_character:, date_account:, credit_detail:, initial_dormancy:, last_claim_date:)
     Case.new(
       year_carried_over: year_carried,
       case_name: prime_index,
@@ -7,8 +7,8 @@ class CaseBuilder
       credit_details: credit_detail,
       account_number: "#{case_number}#{check_character}",
       case_date: Date.parse(date_account),
-      last_claim_date:,
       initial_dormancy:,
+      last_claim_date:,
     )
   end
 end
