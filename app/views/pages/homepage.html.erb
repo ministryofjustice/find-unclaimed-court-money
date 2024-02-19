@@ -2,18 +2,37 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Find unclaimed court money</h1>
 
-    <p class="govuk-body">You can find and claim money you're entitled to from a civil court in England and Wales if it has not been claimed.</p>
-    <p class="govuk-body">This could be money paid to or awarded by a court (for example to settle a court case) to you or to someone whose <%= govuk_link_to "estate you're entitled to claim", "https://www.gov.uk/unclaimed-estates-bona-vacantia" %>.</p>
-    <p class="govuk-body">
-      Money paid to a civil court in England and Wales is held in a Court Funds Office account. It's classed as unclaimed if the
-      Court Funds Office has been unable to contact anyone entitled to the money and
-      there has been no activity on the account for over 10 years.
-    </p>
+    <p class="govuk-body">An Unclaimed Court Money account could contain money paid to you or awarded by a court, for example to settle a court case. It could also contain money paid or awarded to someone whose <%= govuk_link_to "estate you're entitled to claim", "https://www.gov.uk/unclaimed-estates-bona-vacantia" %>.</p>
+    <p class="govuk-body">If you find money you think you could be entitled to, find out more about how to <%= govuk_link_to "find and claim money in an unclaimed court account", "https://www.gov.uk/find-unclaimed-court-money" %>.</p>
+    <p class="govuk-body">You must claim money from an account before its last claim date. If you’re claiming up to 12 months before this date, you must also tell the Court Funds Office as soon as you make your claim to the court.</p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        From 1 June 2024, you will not be able to claim money from an account that has been unclaimed for 30 years or more.
+      </strong>
+    </div>
+
+    <p class="govuk-body">If you want to claim money from an account with a last claim date before or on 1 June 2024, you need to make your claim to the court by 31 May 2024 and tell the Court Funds Office you have made a claim.</p>
 
     <%= govuk_start_button(text: "Start now", href: "/search") %>
 
     <h2 class="govuk-heading-m">Before you start</h2>
-    <p class="govuk-body">If you can't use the digital service, you can call the Court Funds Office Helpline on <span class="nowrap">0300 0200 199</span>.</p>
+    <p class="govuk-body">If you can't use this service, contact the Court Funds Office by email or phone, or write to the address below.</p>
+    <p class="govuk-body">
+      Court Funds Office<br>
+      <%= govuk_link_to "enquiries@cfo.gov.uk", "mailto:enquiries@cfo.gov.uk" %><br>
+      Telephone:<span class="nowrap">0300 0200 199</span>.<br>
+      Monday to Friday, 9am to 5pm<br>
+      <%= govuk_link_to "Find out about call charges", "https://www.gov.uk/call-charges" %>
+    </br>
+
+    <p class="govuk-body">
+      Court Funds Office<br>
+      Sunderland<br>
+      SR43 3AB
+    </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
