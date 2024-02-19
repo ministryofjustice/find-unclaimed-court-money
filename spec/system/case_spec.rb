@@ -16,8 +16,8 @@ RSpec.describe "Case" do
   end
 
   it "lets me view more information about what to do next for case" do
-    expect(page).not_to have_selector(".govuk-heading-s:first-of-type")
+    expect(page).to have_no_link("Find and claim money in an unclaimed court account", href: "https://www.gov.uk/find-unclaimed-court-money")
     find(".govuk-details__summary-text").click
-    expect(page).to have_selector(".govuk-heading-s:first-of-type")
+    expect(page).to have_link("Find and claim money in an unclaimed court account", href: "https://www.gov.uk/find-unclaimed-court-money")
   end
 end
