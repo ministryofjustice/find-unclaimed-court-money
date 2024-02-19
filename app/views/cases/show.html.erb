@@ -11,31 +11,8 @@
 <%= render "summary", kase: @case %>
 
 <%= govuk_details(summary_text: "What happens next") do %>
-  <h3 class="govuk-heading-s">Provide any further information you know</h3>
-  <p class="govuk-body">So we can identify the account, print these results and send to the Courts Fund Office including any other details you might know, such as the:</p>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>court account name</li>
-    <li>name of the relevant court case</li>
-    <li>court that dealt with the case</li>
-    <li>date of the case</li>
-    <li>name of the person paying the money to the court</li>
-    <li>name of the person the money was awarded to</li>
-  </ul>
-
-  <h3 class="govuk-heading-s">Show evidence you're entitled to claim</h3>
-  <p class="govuk-body">We need evidence that the money could belong to you, someone you're responsible for or are representing. This could be copies of:</p>
-  <ul class="govuk-list govuk-list--bullet">
-    <li><%= govuk_link_to "will or grant of administration", "https://www.gov.uk/wills-probate-inheritance/searching-for-probate-records" %></li>
-    <li><%= govuk_link_to "birth, death or marriage certificates", "https://www.gov.uk/order-copy-birth-death-marriage-certificate" %></li>
-    <li><%= govuk_link_to "census record", "https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/census-records/" %></li>
-    <li>a court order (the court that issued it can provide a copy)</li>
-  </ul>
-
-  <h4 class="govuk-body govuk-!-font-weight-bold">Include your ID</h4>
-  <p class="govuk-body">We also need evidence of your identity, so include a copy of some identification such as a passport or driving licence.</p>
-
-  <h3 class="govuk-heading-s">Send your claim by post</h3>
-  <p class="govuk-body">Court Funds Office<br>Sunderland<br>SR43 3AB</p>
-  <p class="govuk-body">You will receive a reply by letter.</p>
-  <p class="govuk-body">You can find out <%= govuk_link_to "how your personal information will be stored and used", "https://www.gov.uk/government/publications/court-funds-office-privacy-notice" %>.</p>
+  <p class="govuk-body">If you think you could be entitled to money from this account, you will need to get more information from the Court Funds Office before you can make a claim to the court that the money was originally paid to.</p>
+  <p class="govuk-body">Find out what evidence you need to send to the Court Funds Office at <%= govuk_link_to "Find and claim money in an unclaimed court account", "https://www.gov.uk/find-unclaimed-court-money" %>.</p>
+  <p class="govuk-body">If you’re claiming up to 12 months before the last claim date, you must also tell the Court Funds Office as soon as you make your claim to the court.</p>
+  <p class="govuk-body">If the last claim date has passed, you won’t be able to make a claim.</p>
 <% end %>
