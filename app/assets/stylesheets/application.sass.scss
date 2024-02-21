@@ -1,6 +1,6 @@
 $govuk-global-styles: true;
 $govuk-new-link-styles: true;
 
-@use "govuk-frontend/govuk/all";
+@use "govuk-frontend/dist/govuk/all";
 @use "overrides";
 @use "print";
