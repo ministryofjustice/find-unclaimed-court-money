@@ -32,7 +32,7 @@ group :development, :test do
   gem "brakeman", require: false
   gem "capybara"
   gem "debug", platforms: %i[mri mingw x64_mingw]
-  gem "factory_bot_rails", "< 6.4.0" # Bug in 6.4.0 - https://github.com/thoughtbot/factory_bot_rails/issues/433
+  gem "factory_bot_rails", "< 6.5.0" # Bug in 6.4.0 - https://github.com/thoughtbot/factory_bot_rails/issues/433
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
 end
