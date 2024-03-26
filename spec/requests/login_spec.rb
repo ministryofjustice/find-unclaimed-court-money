@@ -20,6 +20,14 @@ RSpec.describe "Login" do
     expect(response.body).to include("There is a problem")
   end
 
+  it "checks for allowed IP" do
+    Rails.application.config.allowlisted_ips = ["12.34.56.78"]
+    get admin_path
+    expect(response.status).to eq 403
+  ensure
+    Rails.application.config.allowlisted_ips = []
+  end
+
   context "when logged in" do
     before do
       request_login_as("test_user", "mypass")
