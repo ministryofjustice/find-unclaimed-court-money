@@ -19,7 +19,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "cssbundling-rails", "~> 1.2"
+gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.2"
 gem "sprockets", "~> 4.2"
 gem "sprockets-rails", "~> 3.4"
@@ -34,7 +34,7 @@ group :development, :test do
   gem "brakeman", require: false
   gem "capybara"
   gem "debug", platforms: %i[mri mingw x64_mingw]
-  gem "factory_bot_rails", "< 6.4.0" # Bug in 6.4.0 - https://github.com/thoughtbot/factory_bot_rails/issues/433
+  gem "factory_bot_rails", "< 6.5.0" # Bug in 6.4.0 - https://github.com/thoughtbot/factory_bot_rails/issues/433
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
 end
