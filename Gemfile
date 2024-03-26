@@ -25,6 +25,7 @@ gem "sprockets", "~> 4.2"
 gem "sprockets-rails", "~> 3.4"
 
 group :test do
+  gem "database_cleaner-active_record"
   gem "rails-controller-testing"
   gem "simplecov", require: false
   gem "simplecov-json", require: false
