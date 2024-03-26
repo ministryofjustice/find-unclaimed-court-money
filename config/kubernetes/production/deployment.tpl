@@ -61,7 +61,7 @@ spec:
         - name: pending-migrations
           image: ${ECR_URL}:${IMAGE_TAG}
           command:
-            - bundle exec rake
+            - bin/rake
             - db:abort_if_pending_migrations
           env:
             - name: DATABASE_URL
