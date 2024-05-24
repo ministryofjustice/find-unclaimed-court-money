@@ -98,6 +98,12 @@ jobs:
           cat config/kubernetes/staging/deployment.tpl | envsubst > config/kubernetes/staging/deployment.yaml
           cat config/kubernetes/staging/migrations.tpl | envsubst > config/kubernetes/staging/migrations.yaml
 
+      - name: Tag build and push to ECR
+        run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:staging.latest
+
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_CERT }}
@@ -188,6 +194,12 @@ jobs:
         run: |
           cat config/kubernetes/production/deployment.tpl | envsubst > config/kubernetes/production/deployment.yaml
           cat config/kubernetes/production/migrations.tpl | envsubst > config/kubernetes/production/migrations.yaml
+
+      - name: Tag build and push to ECR
+        run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
 
       - name: Authenticate to the cluster
         env:
