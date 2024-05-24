@@ -216,7 +216,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/find-unclaimed-court-money-staging \
+          deployment/find-unclaimed-court-money-production \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
