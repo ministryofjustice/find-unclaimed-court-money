@@ -118,9 +118,7 @@ jobs:
 
       - name: Rollout restart deployment
         run: |
-          kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/find-unclaimed-court-money-staging \
-          webapp="${{ vars.ECR_URL }}:$SHA"
+          kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/staging
 
       - name: Send deploy notification to product Slack channel
         uses: slackapi/slack-github-action@v1.25.0
@@ -215,9 +213,7 @@ jobs:
 
       - name: Rollout restart deployment
         run: |
-          kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/find-unclaimed-court-money-production \
-          webapp="${{ vars.ECR_URL }}:$SHA"
+          kubectl -n ${KUBE_NAMESPACE} apply -f config/kubernetes/production
 
       - name: Send deploy notification to product Slack channel
         uses: slackapi/slack-github-action@v1.25.0
