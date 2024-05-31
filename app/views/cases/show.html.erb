@@ -12,7 +12,8 @@
 
 <%= govuk_details(summary_text: "What happens next") do %>
   <p class="govuk-body">If you think you could be entitled to money from this account, you will need to get more information from the Court Funds Office before you can make a claim to the court that the money was originally paid to.</p>
-  <p class="govuk-body">Find out what evidence you need to send to the Court Funds Office at <%= govuk_link_to "Find and claim money in an unclaimed court account", "https://www.gov.uk/find-unclaimed-court-money" %>.</p>
-  <p class="govuk-body">If you’re claiming up to 12 months before the last claim date, you must also tell the Court Funds Office as soon as you make your claim to the court.</p>
+  <p class="govuk-body"><%= govuk_link_to "Get information to prepare your claim", "https://www.gov.uk/find-unclaimed-court-money#get-information-to-prepare-your-claim" %>.</p>
+  <p class="govuk-body">If you make a claim 12 months or less before the last date to submit a claim (the last claim date), you must also tell the Court Funds Office as soon as you make your claim to the court.</p>
+  <p class="govuk-body">Find out what information you need to provide under if you’re claiming 12 months or <%= govuk_link_to "less before the last claim date", "https://www.gov.uk/find-unclaimed-court-money#if-youre-claiming-within-12-months-of-the-last-claim-date" %>.</p>
   <p class="govuk-body">If the last claim date has passed, you won’t be able to make a claim.</p>
 <% end %>
