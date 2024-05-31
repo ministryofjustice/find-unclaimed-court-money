@@ -24,6 +24,7 @@ RSpec.describe "Case" do
   it "lets me view more information about claiming within 12 months of the last claim date" do
     expect(page).to have_no_link("if you're claiming 12 months or less before the last claim date", href: "https://www.gov.uk/find-unclaimed-court-money#if-youre-claiming-within-12-months-of-the-last-claim-date")
     find(".govuk-details__summary-text").click
-    expect(page).to have_link("if you're claiming 12 months or less before the last claim date", href: "https://www.gov.uk/find-unclaimed-court-money#if-youre-claiming-within-12-months-of-the-last-claim-date")
+    link_text = page.find_link("if you’re claiming 12 months or less before the last claim date", href: "https://www.gov.uk/find-unclaimed-court-money#if-youre-claiming-within-12-months-of-the-last-claim-date")
+    expect(link_text).to be_visible
   end
 end
