@@ -13,6 +13,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    permissions:
+      check: write
+
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/find_unclaimed_court_money_test"
