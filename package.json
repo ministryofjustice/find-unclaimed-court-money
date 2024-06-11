@@ -8,9 +8,9 @@
     "extends": "stylelint-config-gds/scss"
   },
   "dependencies": {
-    "esbuild": "^0.20.2",
-    "govuk-frontend": "^5.2.0",
-    "sass": "^1.72.0"
+    "esbuild": "^0.21.5",
+    "govuk-frontend": "^5.3.1",
+    "sass": "^1.77.4"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
