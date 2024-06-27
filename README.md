@@ -90,3 +90,7 @@ $ yarn add esbuild
 ```
 $ yarn add sass
 ```
+
+## Admin
+The admin area is accessed via the path '/admin'.
+In production this is restricted to a set of allowed IP addresses which are stored in a secret in a semicolon delimited list.
