@@ -22,7 +22,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
 gem "sprockets", "~> 4.2"
-gem "sprockets-rails", "~> 3.4"
+gem "sprockets-rails", "~> 3.5"
 
 group :test do
   gem "database_cleaner-active_record"
