@@ -6,12 +6,10 @@ ruby "3.1.3"
 gem "rails", ">= 7.0.4.3"
 
 gem "activerecord-import"
-gem "bcrypt", "~> 3.1.20"
-gem "bootsnap", require: false
+gem "bcrypt"
 gem "govuk_app_config"
 gem "govuk-components"
 gem "govuk_design_system_formbuilder"
-gem "jbuilder"
 gem "pagy"
 gem "pg"
 gem "puma", "~> 6.4"
