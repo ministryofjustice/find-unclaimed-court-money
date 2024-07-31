@@ -4,9 +4,9 @@ FROM ruby:3.1.3-alpine as builder
 WORKDIR /app
 
 # Install dependencies
-RUN apk add --no-cache \
+RUN apk --no-cache add \
     build-base \
-    postgresql14-dev \
+    postgresql-dev \
     tzdata \
     yarn
 
@@ -48,7 +48,10 @@ FROM ruby:3.1.3-alpine
 WORKDIR /app
 
 # libpq: required to run postgres, tzdata: required to set timezone
-RUN apk add --no-cache libpq tzdata
+RUN apk --no-cache add \
+    libpq \
+    tzdata \
+    postgresql-client
 
 # Add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
