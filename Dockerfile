@@ -5,23 +5,20 @@ WORKDIR /app
 
 # Install dependencies
 RUN apk --no-cache add \
+    ruby-dev \
     build-base \
     postgresql-dev \
     tzdata \
     yarn
 
 # Copy required files
-COPY .ruby-version Gemfile* ./
+COPY .ruby-version Gemfile* package.json yarn.lock ./
 
-# Install gems and remove gem cache
-RUN gem install bundler -v 2.4.19
+# Install gems and node packages
 RUN bundle config deployment true && \
     bundle config without development test && \
-    bundle install --jobs 4 --retry 3
-
-# Install node packages defined in package.json
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --check-files
+    bundle install --jobs 4 --retry 3 && \
+    yarn install --frozen-lockfile --production
 
 # Copy all files to /app (except what is defined in .dockerignore)
 COPY . .
@@ -35,11 +32,7 @@ RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
 
 # Cleanup to save space in the production image
 RUN rm -rf node_modules log/* tmp/* /tmp && \
-    rm -rf /usr/local/bundle/cache && \
-    find /usr/local/bundle/gems -name "*.c" -delete && \
-    find /usr/local/bundle/gems -name "*.h" -delete && \
-    find /usr/local/bundle/gems -name "*.o" -delete && \
-    find /usr/local/bundle/gems -name "*.html" -delete
+    rm -rf /usr/local/bundle/cache
 
 # Build runtime image
 FROM ruby:3.3.4-alpine
