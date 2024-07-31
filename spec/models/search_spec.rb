@@ -67,10 +67,7 @@ RSpec.describe Search do
 
       before do
         allow(Case).to receive(:for_term).and_return(kase)
-        allow(kase).to receive(:to_date).and_return(kase)
-        allow(kase).to receive(:from_date).and_return(kase)
-        allow(kase).to receive(:carried_over).and_return(kase)
-        allow(kase).to receive(:order).and_return(kase)
+        allow(kase).to receive_messages(to_date: kase, from_date: kase, carried_over: kase, order: kase)
       end
 
       it "filters by from date using a scope" do
@@ -91,7 +88,7 @@ RSpec.describe Search do
       it "filters by multiple keywords" do
         search.keywords = "test1,test2"
         allow(Case).to receive(:for_term).with("test1").and_return(kase)
-        allow(kase).to receive(:or).with(Case.for_term("test2")).and_return(kase)
+        expect(kase).to receive(:or).with(Case.for_term("test2"))
         search.results
       end
 
