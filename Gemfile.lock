@@ -89,8 +89,6 @@ GEM
     bigdecimal (3.1.8)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
-    bootsnap (1.18.3)
-      msgpack (~> 1.2)
     brakeman (6.0.1)
     builder (3.3.0)
     capybara (3.39.2)
@@ -158,12 +156,9 @@ GEM
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.13.2)
+    irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
     json (2.7.2)
@@ -184,7 +179,6 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.24.1)
-    msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.10)
       date
@@ -196,11 +190,11 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.6-arm64-darwin)
+    nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.6-x86_64-darwin)
+    nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.6-x86_64-linux)
+    nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     opentelemetry-api (1.2.5)
     opentelemetry-common (0.20.1)
@@ -554,11 +548,12 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.16)
+    zeitwerk (2.6.17)
 
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-21
   x86_64-darwin-22
   x86_64-linux
@@ -566,20 +561,18 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
-  bcrypt (~> 3.1.20)
+  bcrypt
   better_errors
   binding_of_caller
-  bootsnap
   brakeman
   capybara
   cssbundling-rails (~> 1.4)
   database_cleaner-active_record
   debug
-  factory_bot_rails (< 6.5.0)
+  factory_bot_rails
   govuk-components
   govuk_app_config
   govuk_design_system_formbuilder
-  jbuilder
   jsbundling-rails (~> 1.3)
   pagy
   pg
@@ -597,7 +590,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.3.4p94
 
 BUNDLED WITH
    2.4.19

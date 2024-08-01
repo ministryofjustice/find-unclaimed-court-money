@@ -69,28 +69,19 @@ Yarn and node are required to build css and js assets
 ```
 $ brew install node
 $ brew install yarn
+$ yarn install
 ```
 
 #### Running locally
-Use the dev command to run the application
+Use the dev command to run the application. This will use Foreman to start the rails server as well as compiling the css and js. Any changes to the css and js will be live updated.
+
 ```
 $ bin/dev
-```
-
-If this dev command fails with the message "foreman: not found" install the foreman gem manually:
-```
-$ gem install foreman
-```
-Then append `export PATH="~/.gem/bin:$PATH"` to your `~/.bash_profile` or equivalent file accordingly, then start a new terminal and navigate to the repo directory.
-
-Equally, if the dev command fails with the message "terminated by SIGTERM" and the build output also states "/bin/sh: esbuild: command not found" run the commands:
-```
-$ yarn add esbuild
-```
-```
-$ yarn add sass
 ```
 
 ## Admin
 The admin area is accessed via the path '/admin'.
 In production this is restricted to a set of allowed IP addresses which are stored in a secret in a semicolon delimited list.
+
+## Exceptions
+Any exceptions raised in any deployed environment will be sent to [Sentry](https://ministryofjustice.sentry.io/projects/find-unclaimed-court-money).
