@@ -79,6 +79,13 @@ Use the dev command to run the application. This will use Foreman to start the r
 $ bin/dev
 ```
 
+#### Running tests
+
+```
+$ bundle exec rspec
+```
+
+
 ## Admin
 The admin area is accessed via the path '/admin'.
 In production this is restricted to a set of allowed IP addresses which are stored in a secret in a semicolon delimited list.
