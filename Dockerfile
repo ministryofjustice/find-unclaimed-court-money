@@ -1,14 +1,21 @@
 # Build builder image
-FROM ruby:3.3.4-alpine as builder
+FROM ruby:3.3.4-alpine as base
 
 WORKDIR /app
+
+# tzdata: required to set timezone
+RUN apk --no-cache add \
+    tzdata \
+    postgresql-client
+
+# Ensure latest rubygems is installed
+RUN gem update --system
 
 # Install dependencies
 RUN apk --no-cache add \
     ruby-dev \
     build-base \
     postgresql-dev \
-    tzdata \
     yarn
 
 # Copy required files
@@ -35,16 +42,7 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
     rm -rf /usr/local/bundle/cache
 
 # Build runtime image
-FROM ruby:3.3.4-alpine
-
-# The application runs from /app
-WORKDIR /app
-
-# libpq: required to run postgres, tzdata: required to set timezone
-RUN apk --no-cache add \
-    libpq \
-    tzdata \
-    postgresql-client
+FROM base
 
 # Add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
@@ -56,16 +54,14 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 # Create log and tmp
 RUN mkdir -p log tmp
-RUN chown -R appuser:appgroup db log tmp
+RUN chown -R appuser:appgroup ./*
 
 # Set user
 USER 1000
 
 ARG APP_BUILD_DATE
-ENV APP_BUILD_DATE ${APP_BUILD_DATE}
-
 ARG APP_BUILD_TAG
-ENV APP_BUILD_TAG ${APP_BUILD_TAG}
-
 ARG APP_GIT_COMMIT
+ENV APP_BUILD_DATE ${APP_BUILD_DATE}
+ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
