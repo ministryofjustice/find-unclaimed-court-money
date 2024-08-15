@@ -11,6 +11,8 @@ RUN apk --no-cache add \
 # Ensure latest rubygems is installed
 RUN gem update --system
 
+FROM base as builder
+
 # Install dependencies
 RUN apk --no-cache add \
     ruby-dev \
