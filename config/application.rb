@@ -28,7 +28,7 @@ module FindUnclaimedCourtMoney
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    config.time_zone = "London"
+    config.govuk_time_zone = "London"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
