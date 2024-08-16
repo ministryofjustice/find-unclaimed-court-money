@@ -20,4 +20,9 @@ RSpec.describe "Search" do
     expect(response).to be_successful
     expect(response.body).to include("There is a problem")
   end
+
+  it "redirects when there are no search params" do
+    get search_results_path
+    expect(response).to redirect_to search_path
+  end
 end

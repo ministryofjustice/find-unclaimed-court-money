@@ -6,7 +6,11 @@ class SearchesController < ApplicationController
   end
 
   def results
-    @search = Search.new(search_params)
+    begin
+      @search = Search.new(search_params)
+    rescue ActionController::ParameterMissing
+      redirect_to search_path and return
+    end
 
     if @search.valid?
       respond_to do |format|
