@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
+ruby file: ".ruby-version"
 
-gem "rails", ">= 7.0.4.3"
+gem "rails", ">= 7.2"
 
 gem "activerecord-import"
 gem "bcrypt", "~> 3.1.20"
