@@ -1,5 +1,5 @@
 # Build builder image
-FROM ruby:3.3.4-alpine as base
+FROM ruby:3.3.5-alpine as base
 
 WORKDIR /app
 
