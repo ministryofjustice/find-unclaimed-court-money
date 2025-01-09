@@ -8,7 +8,7 @@
     "extends": "stylelint-config-gds/scss"
   },
   "dependencies": {
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.24.2",
     "govuk-frontend": "^5.7.1",
     "sass": "^1.83.1"
   },
