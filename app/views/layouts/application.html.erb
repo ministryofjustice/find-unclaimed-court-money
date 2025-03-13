@@ -36,6 +36,14 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <% if cookies[:allow_analytics].nil? %>
+      <%= render partial: "layouts/cookie_banner" %>
+    <% end %>
+
+    <% if flash['cookies_consent_updated'] %>
+      <%= render partial: 'layouts/cookie_banner_confirmation', locals: { result: flash['cookies_consent_updated'] } %>
+    <% end %>
+
     <%= govuk_skip_link %>
 
     <%= govuk_header(homepage_url: "https://www.gov.uk") %>

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "/search", to: "searches#new"
   get "/search_results", to: "searches#results"
 
+  get "/cookies/accept", to: "cookies#accept"
+  get "/cookies/reject", to: "cookies#reject"
+
   resources :cases, param: :account_number, only: [:show]
 
   namespace :admin do
