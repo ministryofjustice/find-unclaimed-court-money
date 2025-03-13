@@ -36,7 +36,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <% if cookies[:allow_analytics].nil? %>
+    <% unless analytics_consent_cookie.present? %>
       <%= render partial: "layouts/cookie_banner" %>
     <% end %>
 

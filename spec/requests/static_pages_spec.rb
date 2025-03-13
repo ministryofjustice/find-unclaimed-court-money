@@ -11,4 +11,10 @@ RSpec.describe "Static pages" do
     expect(response).to be_successful
     expect(response.body).to include("Accessibility statement for Find unclaimed court money")
   end
+
+  it "shows the cookie page" do
+    get cookies_path
+    expect(response).to be_successful
+    expect(response.body).to include("Request for personal information puts small files")
+  end
 end
