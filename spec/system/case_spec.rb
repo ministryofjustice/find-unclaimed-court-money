@@ -2,7 +2,6 @@ RSpec.describe "Case" do
   let!(:kase) { create(:case, case_name: "Test Case") }
 
   before do
-    driven_by(:rack_test)
     visit "/cases/#{kase.account_number}"
   end
 
