@@ -15,6 +15,6 @@ RSpec.describe "Static pages" do
   it "shows the cookie page" do
     get cookie_consent_path
     expect(response).to be_successful
-    expect(response.body).to include("Request for personal information puts small files")
+    expect(response.body).to include("Find unclaimed court money puts small files")
   end
 end
