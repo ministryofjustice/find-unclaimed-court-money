@@ -34,15 +34,15 @@ RSpec.describe "cookies", type: :system do
     end
   end
 
-  # context "when returning to the site with cookie value set" do
-  #   before do
-  #     visit "/"
-  #     click_link("Accept analytics cookies")
-  #   end
+  context "when returning to the site with cookie value set" do
+    before do
+      visit "/"
+      click_link("Accept analytics cookies")
+    end
 
-  #   it "does not show cookie banner" do
-  #     visit "/"
-  #     expect(page).not_to have_text "Cookies on Find unclaimed court money"
-  #   end
-  # end
+    it "does not show cookie banner" do
+      visit "/"
+      expect(page).not_to have_text "Cookies on Find unclaimed court money"
+    end
+  end
 end

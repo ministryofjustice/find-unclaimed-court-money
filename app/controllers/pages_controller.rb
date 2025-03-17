@@ -3,5 +3,7 @@ class PagesController < ApplicationController
 
   def accessibility; end
 
-  def cookies; end
+  def cookie_consent
+    @consent = analytics_consent_cookie
+  end
 end
