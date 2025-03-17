@@ -17,13 +17,15 @@
     <%= javascript_include_tag "application", defer: true %>
     <%= stylesheet_link_tag "application" %>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N9PZZHW');</script>
-    <!-- End Google Tag Manager -->
+    <% if analytics_allowed? %>
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-N9PZZHW');</script>
+      <!-- End Google Tag Manager -->
+    <% end %>
   </head>
 
   <body class="govuk-template__body govuk-frontend-supported">
@@ -31,10 +33,12 @@
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9PZZHW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <% if analytics_allowed? %>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9PZZHW"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    <% end %>
 
     <% unless analytics_consent_cookie.present? %>
       <%= render partial: "layouts/cookie_banner" %>
@@ -55,6 +59,6 @@
     </div>
 
     <%= govuk_footer(meta_items_title: "Support links", meta_items: {
-      t("footer.accessibility") => "/accessibility", t("footer.help") => "https://www.gov.uk/help", t("footer.cookie") => "https://www.gov.uk/help/cookies", t("footer.contact") => "https://www.gov.uk/contact-court-funds-office" }) %>
+      t("footer.accessibility") => accessibility_path, t("footer.help") => "https://www.gov.uk/help", t("footer.cookie") => cookie_consent_path, t("footer.contact") => "https://www.gov.uk/contact-court-funds-office" }) %>
   </body>
 </html>
