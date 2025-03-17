@@ -1,4 +1,4 @@
-RSpec.describe ApplicationController, type: :controller do
+RSpec.describe AnalyticsHelper do
   describe "#analytics_consent_cookie" do
     it "retrieves the analytics consent cookie" do
       expect(controller.cookies).to receive(:[]).with("fum_cookies_consent")
