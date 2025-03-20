@@ -2,7 +2,7 @@
   <% cb.with_message(heading_text: "Cookies on Find unclaimed court money") do |m| %>
     <% m.with_action { govuk_button_link_to("Accept analytics cookies", "/cookies/accept") } %>
     <% m.with_action { govuk_button_link_to("Reject analytics cookies", "/cookies/reject") } %>
-
+    <% m.with_action { govuk_link_to("View cookies", cookie_consent_path) } %>
 
     <p class="govuk-body">
       We use some essential cookies to make this service work.
