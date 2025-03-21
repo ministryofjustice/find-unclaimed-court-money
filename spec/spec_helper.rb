@@ -29,4 +29,8 @@ RSpec.configure do |config|
   config.around do |example|
     DatabaseCleaner.cleaning { example.run }
   end
+
+  config.before(type: :system) do
+    driven_by(:rack_test)
+  end
 end

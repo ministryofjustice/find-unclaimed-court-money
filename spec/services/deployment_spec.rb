@@ -1,5 +1,3 @@
-require "spec_helper"
-
 RSpec.describe Deployment, type: :service do
   subject(:deployment) { described_class.new(environment) }
 

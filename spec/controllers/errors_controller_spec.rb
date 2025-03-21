@@ -1,5 +1,3 @@
-require "spec_helper"
-
 RSpec.describe ErrorsController, type: :controller do
   context "when not found" do
     it "renders the expected template" do

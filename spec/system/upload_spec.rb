@@ -1,7 +1,6 @@
 RSpec.describe "Upload" do
   before do
     create(:user, name: "test_user", password: "mypassword")
-    driven_by(:rack_test)
     Capybara.app_host = "http://admin.example.com"
     system_login_as("test_user", "mypassword")
   end

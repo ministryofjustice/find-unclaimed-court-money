@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include AnalyticsHelper
+
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
 
   def current_user

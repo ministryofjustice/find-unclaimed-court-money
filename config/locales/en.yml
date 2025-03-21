@@ -8,9 +8,16 @@ en:
     cookie: Cookie policy
     contact: Contact us
 
+  layouts:
+    cookie_banner_confirmation:
+      result:
+        accept: You've accepted analytics cookies.
+        reject: You've rejected analytics cookies.
+
   page_title:
     accessibility: Accessibility statement
     case: Account details
+    cookies: Cookies
     login: Admin login
     search: Search
     search_results: Search results

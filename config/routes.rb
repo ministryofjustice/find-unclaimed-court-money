@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "/search", to: "searches#new"
   get "/search_results", to: "searches#results"
 
+  get "/cookie_consent", to: "pages#cookie_consent"
+  get "/cookies/:consent" => "cookies#update"
+  post "/cookies" => "cookies#update"
+
   resources :cases, param: :account_number, only: [:show]
 
   namespace :admin do
