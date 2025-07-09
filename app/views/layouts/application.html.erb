@@ -53,6 +53,7 @@
     <%= govuk_header(homepage_url: "https://www.gov.uk") %>
 
     <div class="govuk-width-container">
+      <%= render 'layouts/feedback_link' %>
       <main class="govuk-main-wrapper" id="main-content" role="main">
         <%= yield %>
       </main>

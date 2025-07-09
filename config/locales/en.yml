@@ -13,6 +13,8 @@ en:
       result:
         accept: You've accepted analytics cookies.
         reject: You've rejected analytics cookies.
+    feedback:
+      banner_html: Help us make this service better. Give us your %{link}"
 
   page_title:
     accessibility: Accessibility statement
