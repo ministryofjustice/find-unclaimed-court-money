@@ -53,6 +53,7 @@
     <%= govuk_header(homepage_url: "https://www.gov.uk") %>
 
     <div class="govuk-width-container">
+      <%= render 'layouts/phase_banner' %>
       <main class="govuk-main-wrapper" id="main-content" role="main">
         <%= yield %>
       </main>
