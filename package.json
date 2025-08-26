@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "esbuild": "^0.25.4",
-    "govuk-frontend": "^5.8.0",
+    "govuk-frontend": "^5.11.2",
     "sass": "^1.83.1"
   },
   "scripts": {
