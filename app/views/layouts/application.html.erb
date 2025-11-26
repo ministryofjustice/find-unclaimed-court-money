@@ -52,6 +52,19 @@
 
     <%= govuk_header(homepage_url: "https://www.gov.uk") %>
 
+    <section aria-label="Service information" class="govuk-service-navigation"
+             data-module="govuk-service-navigation">
+      <div class="govuk-width-container">
+        <div class="govuk-service-navigation__container">
+          <span class="govuk-service-navigation__service-name">
+            <a href="#" class="govuk-service-navigation__link">
+              Find unclaimed court money
+            </a>
+          </span>
+        </div>
+      </div>
+    </section>
+
     <div class="govuk-width-container">
       <%= render 'layouts/phase_banner' %>
       <main class="govuk-main-wrapper" id="main-content" role="main">
