@@ -12,7 +12,7 @@ gem "govuk-components", "~> 5.11.1"
 gem "govuk_design_system_formbuilder"
 gem "pagy"
 gem "pg"
-gem "puma", "~> 7.1"
+gem "puma", "~> 7.2"
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
