@@ -13,7 +13,7 @@ gem "govuk_design_system_formbuilder"
 gem "pagy"
 gem "pg"
 gem "puma", "~> 7.1"
-gem "sentry-rails"
+gem "sentry-rails", "~> 6.3"
 gem "sentry-ruby"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
