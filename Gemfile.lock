@@ -139,10 +139,10 @@ GEM
       rake (>= 13)
     googleapis-common-protos-types (1.21.0)
       google-protobuf (~> 4.26)
-    govuk-components (5.11.3)
+    govuk-components (5.13.1)
       html-attributes-utils (~> 1.0.0, >= 1.0.0)
       pagy (>= 6, < 10)
-      view_component (>= 4.0, < 4.1)
+      view_component (>= 4.0, < 4.2)
     govuk_app_config (9.22.2)
       logstasher (~> 2.1)
       opentelemetry-exporter-otlp (>= 0.25, < 0.32)
@@ -598,8 +598,9 @@ GEM
     unicode-emoji (4.1.0)
     uri (1.1.1)
     useragent (0.16.11)
-    view_component (4.0.2)
-      activesupport (>= 7.1.0, < 8.1)
+    view_component (4.1.1)
+      actionview (>= 7.1.0, < 8.2)
+      activesupport (>= 7.1.0, < 8.2)
       concurrent-ruby (~> 1)
     webrick (1.9.1)
     websocket-driver (0.8.0)
@@ -618,6 +619,7 @@ PLATFORMS
   x86_64-darwin-21
   x86_64-darwin-22
   x86_64-darwin-23
+  x86_64-darwin-25
   x86_64-linux
   x86_64-linux-musl
 
@@ -632,7 +634,7 @@ DEPENDENCIES
   database_cleaner-active_record
   debug
   factory_bot_rails
-  govuk-components (~> 5.11.1)
+  govuk-components (~> 5.13.1)
   govuk_app_config
   govuk_design_system_formbuilder
   jsbundling-rails (~> 1.3)
