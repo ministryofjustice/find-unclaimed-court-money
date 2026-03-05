@@ -603,7 +603,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   rubocop-govuk
-  sentry-rails (~> 6.3)
+  sentry-rails (~> 6.4)
   sentry-ruby
   simplecov
   simplecov-json
