@@ -1403,10 +1403,10 @@ gopd@^1.0.1, gopd@^1.2.0:
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.2.0.tgz#89f56b8217bdbc8802bd299df6d7f1081d7e51a1"
   integrity sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==
 
-govuk-frontend@^5.14.0:
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.14.0.tgz#d93f1ffa88b0696114509cab86e4ea474006f8e0"
-  integrity sha512-MgfaXswIM6KpXS2T5gltEnzgVLgfM3UoE9+rYkhBiR0suaJ8Let31VZXQZqz9QhiPDbv28fW1nRjIyLujfZIBA==
+govuk-frontend@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-6.1.0.tgz#7022bede1d72f6c63f6bf43f16f3d207c6f1214e"
+  integrity sha512-sqivexZFa82LiDIDVMItsUlqEXE/wEUWWBqzEoxHvUFLBH7bY0C8lVrj1qsDThSnj5JEUMS7isBAbKnfQ5Qp6g==
 
 graceful-fs@^4.1.15:
   version "4.2.11"
@@ -1489,9 +1489,9 @@ ignore@^5.1.1, ignore@^5.2.0, ignore@^5.2.1:
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 
 immutable@^5.0.2:
-  version "5.1.4"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-5.1.4.tgz#e3f8c1fe7b567d56cf26698f31918c241dae8c1f"
-  integrity sha512-p6u1bG3YSnINT5RQmx/yRZBpenIl30kVxkTLDyHLIMk0gict704Q9n+thfDI7lTRm9vXdDYutVzXhzcThxTnXA==
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-5.1.5.tgz#93ee4db5c2a9ab42a4a783069f3c5d8847d40165"
+  integrity sha512-t7xcm2siw+hlUM68I+UEOK+z84RzmN59as9DZ7P1l0994DKUWV7UXBMQZVxaoMSRQ+PBZbHCOoBt7a2wxOMt+A==
 
 import-fresh@^3.2.1:
   version "3.3.1"
