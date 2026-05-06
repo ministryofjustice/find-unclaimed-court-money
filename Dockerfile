@@ -1,12 +1,13 @@
 # Build builder image
-FROM ruby:3.3.5-alpine as base
+FROM ruby:3.3.11-alpine as base
 
 WORKDIR /app
 
 # tzdata: required to set timezone
 RUN apk --no-cache add \
     tzdata \
-    postgresql-client
+    postgresql-client \
+    yaml-dev
 
 # Ensure latest rubygems is installed
 RUN gem update --system
@@ -18,7 +19,8 @@ RUN apk --no-cache add \
     ruby-dev \
     build-base \
     postgresql-dev \
-    yarn
+    yarn \
+    yaml-dev
 
 # Copy required files
 COPY .ruby-version Gemfile* package.json yarn.lock ./
