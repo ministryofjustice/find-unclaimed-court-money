@@ -10,7 +10,7 @@
   "dependencies": {
     "esbuild": "^0.28.0",
     "govuk-frontend": "^6.1.0",
-    "sass": "^1.99.0"
+    "sass": "^1.100.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
