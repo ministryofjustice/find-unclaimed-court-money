@@ -2,11 +2,11 @@
   <%= t('page_title.case') %>
 <% end %>
 
-<%= govuk_back_link(href: "javascript:history.go(-1)") %>
+<%= govuk_back_link(href: request.referer || root_path) %>
 
 <h1 class="govuk-heading-xl">Account details</h1>
 
-<%= govuk_button_link_to "Print account details", "javascript:window.print()" %>
+<%= govuk_button_link_to "Print account details", "#", data: { print: true } %>
 
 <%= render "summary", kase: @case %>
 
