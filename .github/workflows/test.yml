@@ -58,6 +58,13 @@ jobs:
       - name: Security audit application code
         run: bundle exec brakeman -q
 
+      - name: Check for vulnerable dependencies with Snyk
+        uses: snyk/actions/ruby@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --all-projects --exclude=vendor,node_modules --severity-threshold=high
+
       - name: Run tests
         run: bundle exec rspec
 
