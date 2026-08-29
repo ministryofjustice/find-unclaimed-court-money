@@ -10,7 +10,7 @@
   "dependencies": {
     "esbuild": "^0.28.1",
     "govuk-frontend": "^6.1.0",
-    "sass": "^1.99.0"
+    "sass": "^1.100.0"
   },
   "resolutions": {
     "immutable": "5.1.8"
