@@ -85,6 +85,15 @@ $ bin/dev
 $ bundle exec rspec
 ```
 
+#### Building the Docker image
+
+The Ruby version used in the Docker image is not hardcoded in the `Dockerfile` - it's read from `.ruby-version`, the same file `rbenv` and CI use. Use `bin/docker-build` instead of `docker build` directly; it passes the version from `.ruby-version` in as a build argument, so bumping `.ruby-version` is the only change needed to upgrade the Ruby version everywhere (local installs, CI, and Docker builds).
+
+```
+$ bin/docker-build -t find-unclaimed-court-money .
+```
+
+Any extra arguments are forwarded to `docker build` as-is.
 
 ## Admin
 The admin area is accessed via the path '/admin'.
