@@ -16,7 +16,7 @@ RSpec.describe Upload do
 
     context "with valid file" do
       before do
-        allow(CsvImporter).to receive(:import).and_return({})
+        allow(CsvImporter).to receive(:import).and_return({ added: 2, failed: 0, errors: [], error_details: [] })
       end
 
       it { is_expected.to be_truthy }
@@ -31,7 +31,7 @@ RSpec.describe Upload do
 
       it "adds an error" do
         process
-        expect(upload.errors.first.type).to eq :invalid
+        expect(upload.errors.first.message).to include("If it fails again, contact support", "No records were changed")
       end
     end
   end

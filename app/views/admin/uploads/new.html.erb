@@ -6,6 +6,23 @@
 
 <h1 class="govuk-heading-xl">Upload CSV</h1>
 
+<p class="govuk-body">Upload a comma-separated CSV with a header row and six data columns, or eight including the two optional date columns. You can use any filename.</p>
+<p class="govuk-body">A successful upload replaces all existing records. If the file contains errors, no records are changed.</p>
+
+<% if @upload.results && @upload.results[:error_details].present? %>
+  <h2 class="govuk-heading-m">Errors in the CSV</h2>
+  <% grouped_errors = @upload.results[:error_details].each_with_object({}) do |error, groups| %>
+    <% error[:message].split("; ").each do |message| %>
+      <% (groups[message] ||= []) << error[:line] %>
+    <% end %>
+  <% end %>
+  <ul class="govuk-list govuk-list--bullet">
+    <% grouped_errors.each do |message, rows| %>
+      <li><%= 'Row'.pluralize(rows.size) %> <%= rows.join(', ') %>: <%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
     <%= form_for @upload, url: admin_upload_path, multipart: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
