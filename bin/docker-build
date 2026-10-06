@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+set -e
+
+# Wraps `docker build`, injecting the Ruby version from .ruby-version as a
+# build-arg. This keeps the Dockerfile and CI pipeline in sync with the app's
+# Ruby version without either needing to be edited when it changes.
+
+cd "$(dirname "$0")/.."
+
+RUBY_VERSION=$(cat .ruby-version)
+
+exec docker build --build-arg RUBY_VERSION="$RUBY_VERSION" "$@"
