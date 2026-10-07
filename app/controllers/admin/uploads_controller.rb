@@ -24,7 +24,7 @@ module Admin
     end
 
     def create_params
-      params.require(:upload).permit(:file)
+      params.fetch(:upload, ActionController::Parameters.new).permit(:file)
     end
   end
 end
