@@ -85,6 +85,54 @@ $ bin/dev
 $ bundle exec rspec
 ```
 
+#### Regression testing
+
+`spec/system/regression/fum_regression_spec.rb` drives the full public search
+journey — start page → search → results (CSV download link, case link) →
+case details — and the admin journey — login → CSV upload → summary →
+log out — against this app's local Rails environment, using a real headless
+Chrome browser. It runs as part of `bundle exec rspec` above like any other
+spec.
+
+##### Updating visual regression baselines
+
+That spec also compares screenshots against baselines committed in
+`doc/screenshots/regression/`. Don't regenerate these locally — Chrome
+renders text differently across OS/font setups, so a baseline captured on a
+laptop will fail in CI even though nothing meaningfully changed. Instead,
+once a change intentionally affects one of these pages, run the "Record
+visual regression baselines" workflow against the branch that needs
+updating, which captures fresh baselines on the same `ubuntu-latest`
+environment CI runs tests in and pushes them to that branch:
+
+```
+$ gh workflow run record-regression-baselines.yml --ref <branch> -f branch=<branch>
+```
+
+(Only dispatchable once the workflow file exists on `main`.)
+
+##### Live-environment smoke test
+
+`lib/tasks/regression.rake` provides a `regression:live_staging_check` rake
+task that smoke-tests the same journeys against a real deployed FUM
+environment (e.g. staging), rather than this app's local Rails
+environment/database. Useful after a deploy, to check the live site
+end-to-end without waiting on a manual walkthrough.
+
+```
+$ FUM_URL=https://staging-find-unclaimed-court-money.apps.live.cloud-platform.service.justice.gov.uk \
+  bundle exec rake regression:live_staging_check
+```
+
+`FUM_URL` is required; everything else (Basic Auth credentials, search
+keyword, admin credentials, upload file, headless mode) is prompted for
+interactively if not set via env var, with sensible defaults where one makes
+sense. Pass `FUM_DEFAULT=true` to accept all defaults without prompting.
+Leaving `FUM_ADMIN_USER` blank skips the admin journey entirely; leaving
+`FUM_UPLOAD_FILE` blank (admin login only) still checks login/logout but
+skips the upload step. It never touches this app's local Rails environment
+or database. Never commit real values for these env vars.
+
 #### Building the Docker image
 
 The Ruby version used in the Docker image is not hardcoded in the `Dockerfile` - it's read from `.ruby-version`, the same file `rbenv` and CI use. Use `bin/docker-build` instead of `docker build` directly; it passes the version from `.ruby-version` in as a build argument, so bumping `.ruby-version` is the only change needed to upgrade the Ruby version everywhere (local installs, CI, and Docker builds).
