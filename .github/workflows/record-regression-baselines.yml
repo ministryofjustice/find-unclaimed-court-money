@@ -40,6 +40,12 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
       - name: Install packages
         run: yarn install --frozen-lockfile
 
@@ -55,6 +61,7 @@ jobs:
       - name: Record regression screenshots
         env:
           RECORD_SCREENSHOTS: "1"
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: bundle exec rspec spec/system/regression/fum_regression_spec.rb
 
       - name: Commit regenerated baselines

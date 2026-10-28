@@ -39,6 +39,12 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
       - name: Install packages
         run: |
           yarn install --frozen-lockfile
@@ -66,6 +72,8 @@ jobs:
           args: --all-projects --exclude=vendor,node_modules --severity-threshold=high
 
       - name: Run tests
+        env:
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: bundle exec rspec
 
       - name: Upload regression screenshots

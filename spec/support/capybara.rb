@@ -19,6 +19,12 @@ Capybara::Screenshot::Diff.fail_if_new = false if ENV["RECORD_SCREENSHOTS"]
 
 Capybara.register_driver :chrome_headless do |app|
   options = Selenium::WebDriver::Chrome::Options.new
+  # Pin the exact Chrome binary .github/workflows/{test,record-regression-baselines}.yml
+  # installed via browser-actions/setup-chrome, rather than relying on
+  # whichever Chrome (if any) happens to be preinstalled on the runner -
+  # that mismatch is what caused Chrome to fail to launch at all. Not set
+  # when running locally, where Selenium Manager finds the system Chrome.
+  options.binary = ENV["CHROME_PATH"] if ENV["CHROME_PATH"].present?
   options.add_argument("--headless=new")
   options.add_argument("--disable-gpu")
   options.add_argument("--no-sandbox")
