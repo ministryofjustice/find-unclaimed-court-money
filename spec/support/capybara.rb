@@ -22,6 +22,11 @@ Capybara.register_driver :chrome_headless do |app|
   options.add_argument("--headless=new")
   options.add_argument("--disable-gpu")
   options.add_argument("--no-sandbox")
+  # GitHub Actions runners give Chrome a tiny /dev/shm by default, which
+  # crashes the browser process outright ("unexpectedly closed with status
+  # 1") rather than producing a usable error - this makes Chrome fall back
+  # to /tmp for shared memory instead.
+  options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--window-size=1280,1024")
   Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end

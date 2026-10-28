@@ -73,6 +73,7 @@ namespace :regression do
         options.add_argument("--headless=new")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
       end
       options.add_argument("--window-size=1280,1024")
       Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
