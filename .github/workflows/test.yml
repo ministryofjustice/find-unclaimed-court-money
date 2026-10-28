@@ -57,6 +57,11 @@ jobs:
         run: |
           yarn install --frozen-lockfile
 
+      - name: Chromedriver diagnostics
+        env:
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+        run: bundle exec ruby bin/chrome_diagnostics.rb
+
       - name: Precompile assets
         run: bin/rails assets:precompile
 
