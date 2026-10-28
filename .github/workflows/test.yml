@@ -45,6 +45,14 @@ jobs:
         with:
           chrome-version: stable
 
+      - name: Chrome diagnostics
+        run: |
+          echo "chrome-path output: ${{ steps.setup-chrome.outputs.chrome-path }}"
+          file "${{ steps.setup-chrome.outputs.chrome-path }}" || true
+          ldd "${{ steps.setup-chrome.outputs.chrome-path }}" | grep "not found" || echo "no missing shared libraries"
+          "${{ steps.setup-chrome.outputs.chrome-path }}" --version
+          "${{ steps.setup-chrome.outputs.chrome-path }}" --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage --dump-dom about:blank
+
       - name: Install packages
         run: |
           yarn install --frozen-lockfile
