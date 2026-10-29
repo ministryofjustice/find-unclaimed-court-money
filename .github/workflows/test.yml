@@ -45,22 +45,9 @@ jobs:
         with:
           chrome-version: stable
 
-      - name: Chrome diagnostics
-        run: |
-          echo "chrome-path output: ${{ steps.setup-chrome.outputs.chrome-path }}"
-          file "${{ steps.setup-chrome.outputs.chrome-path }}" || true
-          ldd "${{ steps.setup-chrome.outputs.chrome-path }}" | grep "not found" || echo "no missing shared libraries"
-          "${{ steps.setup-chrome.outputs.chrome-path }}" --version
-          "${{ steps.setup-chrome.outputs.chrome-path }}" --headless=new --disable-gpu --no-sandbox --disable-dev-shm-usage --dump-dom about:blank
-
       - name: Install packages
         run: |
           yarn install --frozen-lockfile
-
-      - name: Chromedriver diagnostics
-        env:
-          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
-        run: bundle exec ruby bin/chrome_diagnostics.rb
 
       - name: Precompile assets
         run: bin/rails assets:precompile
@@ -84,10 +71,21 @@ jobs:
         with:
           args: --all-projects --exclude=vendor,node_modules --severity-threshold=high
 
-      - name: Run tests
+      # Runs in its own process, before the main suite accumulates ~100 other
+      # examples' worth of state (DB connections, asset-pipeline subprocesses,
+      # SimpleCov instrumentation) - launching Chrome deep into that long-lived
+      # process was failing outright ("process unexpectedly closed with status
+      # 1") even though the exact same Chrome/chromedriver launch succeeds
+      # cleanly on its own. Also keeps :truncation-strategy (used only by
+      # :js specs, see spec/spec_helper.rb) from ever interleaving with the
+      # :transaction-strategy specs in the same process.
+      - name: Run regression (browser) tests
         env:
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
-        run: bundle exec rspec
+        run: bundle exec rspec spec/system/regression
+
+      - name: Run tests
+        run: bundle exec rspec --exclude-pattern "spec/system/regression/**/*_spec.rb"
 
       - name: Upload regression screenshots
         if: always()
