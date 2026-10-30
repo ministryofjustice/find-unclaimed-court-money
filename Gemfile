@@ -33,10 +33,13 @@ end
 group :development, :test do
   gem "brakeman", require: false
   gem "capybara"
+  gem "capybara-screenshot-diff", "~> 1.15"
+  gem "chunky_png"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
+  gem "selenium-webdriver"
 end
 
 group :development do
