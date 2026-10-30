@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup Chrome
         id: setup-chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: stable
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Upload regression screenshots
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: regression-screenshots
           path: doc/screenshots/regression/*.png
