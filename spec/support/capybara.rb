@@ -34,5 +34,26 @@ Capybara.register_driver :chrome_headless do |app|
   # to /tmp for shared memory instead.
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--window-size=1280,1024")
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+
+  # chromedriver crashing on launch surfaces to RSpec as a blank
+  # Selenium::WebDriver::Error::WebDriverError ("process unexpectedly closed
+  # with status 1") with no indication of *why* - chromedriver's own
+  # stdout/stderr is swallowed by default. Capture it with verbose logging
+  # in CI so the next failure shows the real reason instead of just the exit
+  # status.
+  service = if ENV["CI"].present?
+    Selenium::WebDriver::Chrome::Service.new(log: :stdout, args: ["--verbose"])
+  end
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:, service:)
 end
+
+# capybara_screenshot_diff's `resize_window_if_needed` before-hook (and
+# Capybara's own RSpec integration, both registered as unfiltered
+# `config.before` hooks that run ahead of our `driven_by` call below in
+# spec_helper.rb) resolve the browser via `Capybara.javascript_driver`,
+# which defaults to :selenium (Firefox) - that launches and leaves a whole
+# second, unused Firefox session running alongside the Chrome one for every
+# :js example, wasting resources and - under CI's tight memory - plausibly
+# contributing to chromedriver's "process unexpectedly closed" crashes.
+Capybara.javascript_driver = :chrome_headless
