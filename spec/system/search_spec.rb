@@ -71,4 +71,29 @@ RSpec.describe "Search" do
     expect(page).to have_selector("h1", text: "Search results")
     expect(page).to have_selector("p", text: "Nothing found to display.")
   end
+
+  it "lets me search for a case by year carried over" do
+    visit "/search"
+
+    fill_in "Search by year carried over", with: "2019"
+    click_button "Search"
+
+    expect(page).to have_selector("h1", text: "Search results")
+    expect(page).to have_selector("p", text: "Nothing found to display.")
+  end
+
+  it "lets me download the search results as a CSV matching the results shown on screen" do
+    visit "/search"
+    fill_in "keywords", with: "test"
+    click_button "Search"
+
+    expect(page).to have_selector("a", text: "Test Case")
+    account_number = find("a", text: "Test Case")[:href].split("/").last
+
+    click_link "Download results as CSV"
+
+    expect(page.response_headers["Content-Type"]).to include("text/csv")
+    expect(page.body).to include(account_number)
+    expect(page.body).to include("Test Case")
+  end
 end
