@@ -55,7 +55,7 @@ en:
     label:
       search:
         keywords: Search by keywords
-        carried_over: Search by year carried over
+        carried_over: Search by year carried over (optional)
       login:
         name: Login name
       upload:
