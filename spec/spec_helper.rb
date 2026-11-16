@@ -22,15 +22,19 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
 
   config.around do |example|
+    # :js specs run the app in a real Selenium/headless-Chrome process against
+    # a separate DB connection, which can't see data created inside an
+    # uncommitted :transaction - it needs :truncation so factory-created rows
+    # are actually committed and visible to that other connection.
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.cleaning { example.run }
   end
 
-  config.before(type: :system) do
-    driven_by(:rack_test)
+  config.before(type: :system) do |example|
+    driven_by(example.metadata[:js] ? :chrome_headless : :rack_test)
   end
 end
