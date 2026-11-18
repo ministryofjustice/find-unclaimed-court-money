@@ -55,10 +55,18 @@ jobs:
       - name: Setup test database
         run: bin/rails db:prepare
 
-      - name: Remove existing baselines
-        run: rm -f doc/screenshots/regression/*.png
-
       - name: Record regression screenshots
+        # capybara-screenshot-diff always restores the committed baseline PNG
+        # via `git show HEAD:<path>` before comparing, so deleting it from the
+        # working tree first (as this step used to) has no effect - it just
+        # gets recreated from git. RECORD_SCREENSHOTS/fail_if_new only
+        # suppresses failure when no baseline is committed at all, so an
+        # intentional re-record against an existing, now-mismatching baseline
+        # is expected to fail this comparison. That's fine: the fresh
+        # screenshot is written to disk before the comparison runs, so
+        # continue-on-error lets the job carry on and commit it as the new
+        # baseline below.
+        continue-on-error: true
         env:
           RECORD_SCREENSHOTS: "1"
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
@@ -68,7 +76,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add doc/screenshots/regression/*.png
+          # -u rather than a *.png glob: the record step also produces
+          # .base.png/.diff.png/.base.diff.png diff artifacts, which are
+          # gitignored, and git refuses to add an explicitly-named ignored
+          # path even alongside tracked matches. -u only restages the plain
+          # .png files already tracked in git.
+          git add -u doc/screenshots/regression/
           if git diff --cached --quiet; then
             echo "No baseline changes to commit."
           else
