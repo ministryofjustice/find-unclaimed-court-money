@@ -1,7 +1,7 @@
-import { initAll } from "govuk-frontend";
-import "./cookie_banner"
+import { initAll } from 'govuk-frontend';
+import './cookie_banner'
 
-initAll();
+initAll()
 
 document.querySelectorAll("[data-print]").forEach((el) => {
   el.addEventListener("click", (e) => {
