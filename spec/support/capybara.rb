@@ -17,6 +17,29 @@ end
 # baselines don't drift from a developer's local OS/font rendering.
 Capybara::Screenshot::Diff.fail_if_new = false if ENV["RECORD_SCREENSHOTS"]
 
+# Chrome 158 rejects the wildcard origin that capybara's
+# Selenium::Driver::ChromeDriver#reset! passes to CDP's
+# Storage.clearDataForOrigin between every :js example, raising
+# "Selenium::WebDriver::Error::InvalidArgumentError: invalid argument: * is
+# not a valid URL" instead of cleaning up. No capybara release fixes this yet
+# - https://github.com/teamcapybara/capybara/issues/2865. Swap that one call
+# for the equivalent non-wildcard calls: clearing cookies for every origin
+# (what delete_all_cookies already does) and local storage for the app's own
+# origin.
+module ChromeResetWithoutWildcardOrigin
+private
+
+  def execute_cdp(cmd, params = {})
+    return super unless cmd == "Storage.clearDataForOrigin" && params[:origin] == "*"
+
+    super("Network.clearBrowserCookies")
+    return unless params[:storageTypes].include?("local_storage")
+
+    super(cmd, { origin: Capybara.current_session.server.base_url, storageTypes: "local_storage" })
+  end
+end
+Capybara::Selenium::Driver::ChromeDriver.prepend(ChromeResetWithoutWildcardOrigin)
+
 Capybara.register_driver :chrome_headless do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   # Pin the exact Chrome binary .github/workflows/{test,record-regression-baselines}.yml
