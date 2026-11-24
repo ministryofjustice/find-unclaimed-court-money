@@ -1,5 +1,5 @@
-import { initAll } from 'govuk-frontend';
 import './cookie_banner'
+import { initAll } from 'govuk-frontend';
 
 initAll()
 

@@ -6,4 +6,11 @@ RSpec.describe "admin/uploads/new.html.erb" do
     expect(rendered).to have_selector("form")
     expect(rendered).to have_selector("button", text: "Upload")
   end
+
+  it "focuses on the error summary when the form is submitted with an invalid file", :aggregate_failures do
+    assign(:upload, build(:upload, file: nil))
+    render
+
+    expect(rendered).to have_selector("error-summary[tabindex='-1']")
+  end
 end
