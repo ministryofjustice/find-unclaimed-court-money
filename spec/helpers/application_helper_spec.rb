@@ -32,6 +32,7 @@ RSpec.describe ApplicationHelper do
           </ul>
         HTML
       end
+
       it "moves the 'Page N' label onto each link" do
         doc = Nokogiri::HTML::DocumentFragment.parse(result)
         links = doc.css("a.govuk-pagination__link")
@@ -65,14 +66,14 @@ RSpec.describe ApplicationHelper do
 
     context "with previous page" do
       let(:pages) { 3 }
-      let(:govuk_pagination_html)  do
+      let(:govuk_pagination_html) do
         <<~HTML
-            <div class="govuk-pagination__prev"><a href="?page=1" class="govuk-link govuk-pagination__link" rel="prev"><svg class="govuk-pagination__icon govuk-pagination__icon--prev"></svg><span class="govuk-pagination__link-title govuk-pagination__link-title--decorated">Previous<span class="govuk-visually-hidden"> page</span></span></a></div>
-            <ul class="govuk-pagination__list">
-              <li class="govuk-pagination__item" aria-label="Page 1"><a href="?page=1" class="govuk-link govuk-pagination__link">1</a></li>
-              <li class="govuk-pagination__item govuk-pagination__item--current" aria-label="Page 2"><a href="?page=2" class="govuk-link govuk-pagination__link">2</a></li>
-              <li class="govuk-pagination__item" aria-label="Page 3"><a href="?page=3" class="govuk-link govuk-pagination__link">3</a></li>
-            </ul>
+          <div class="govuk-pagination__prev"><a href="?page=1" class="govuk-link govuk-pagination__link" rel="prev"><svg class="govuk-pagination__icon govuk-pagination__icon--prev"></svg><span class="govuk-pagination__link-title govuk-pagination__link-title--decorated">Previous<span class="govuk-visually-hidden"> page</span></span></a></div>
+          <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item" aria-label="Page 1"><a href="?page=1" class="govuk-link govuk-pagination__link">1</a></li>
+            <li class="govuk-pagination__item govuk-pagination__item--current" aria-label="Page 2"><a href="?page=2" class="govuk-link govuk-pagination__link">2</a></li>
+            <li class="govuk-pagination__item" aria-label="Page 3"><a href="?page=3" class="govuk-link govuk-pagination__link">3</a></li>
+          </ul>
         HTML
       end
 
@@ -92,13 +93,13 @@ RSpec.describe ApplicationHelper do
 
     context "without previous page link" do
       let(:pages) { 3 }
-      let(:govuk_pagination_html)  do
+      let(:govuk_pagination_html) do
         <<~HTML
-            <ul class="govuk-pagination__list">
-              <li class="govuk-pagination__item govuk-pagination__item--current" aria-label="Page 1"><a href="?page=1" class="govuk-link govuk-pagination__link">1</a></li>
-              <li class="govuk-pagination__item" aria-label="Page 2"><a href="?page=2" class="govuk-link govuk-pagination__link">2</a></li>
-              <li class="govuk-pagination__item" aria-label="Page 3"><a href="?page=3" class="govuk-link govuk-pagination__link">3</a></li>
-            </ul>
+          <ul class="govuk-pagination__list">
+            <li class="govuk-pagination__item govuk-pagination__item--current" aria-label="Page 1"><a href="?page=1" class="govuk-link govuk-pagination__link">1</a></li>
+            <li class="govuk-pagination__item" aria-label="Page 2"><a href="?page=2" class="govuk-link govuk-pagination__link">2</a></li>
+            <li class="govuk-pagination__item" aria-label="Page 3"><a href="?page=3" class="govuk-link govuk-pagination__link">3</a></li>
+          </ul>
         HTML
       end
 
@@ -113,7 +114,6 @@ RSpec.describe ApplicationHelper do
         expect(link["rel"]).not_to eq("prev")
       end
     end
-
 
     context "with next page link" do
       let(:pages) { 3 }
