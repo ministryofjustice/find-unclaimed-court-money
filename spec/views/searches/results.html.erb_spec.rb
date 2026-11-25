@@ -5,7 +5,7 @@ RSpec.describe "searches/results.html.erb" do
     assign(:cases, [kase])
     render
 
-    expect(rendered).to have_selector("a", text: "CSV")
+    expect(rendered).to have_css("a", text: "CSV")
   end
 
   it "renders a table of results", :aggregate_failures do
@@ -13,7 +13,7 @@ RSpec.describe "searches/results.html.erb" do
     render
 
     expect(rendered).to have_text(kase.account_number)
-    expect(rendered).to have_selector("a", text: kase.case_name)
+    expect(rendered).to have_css("a", text: kase.case_name)
     expect(rendered).to have_text(kase.date_account_opened)
   end
 end

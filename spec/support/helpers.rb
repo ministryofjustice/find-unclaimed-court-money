@@ -5,7 +5,7 @@ module Helpers
 
   def system_login_as(name, password)
     visit "/admin"
-    expect(page).to have_selector("h1", text: "Admin login")
+    expect(page).to have_css("h1", text: "Admin login")
 
     fill_in "Login name", with: name
     fill_in "Password", with: password

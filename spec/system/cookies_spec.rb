@@ -41,8 +41,10 @@ RSpec.describe "cookies", type: :system do
     end
 
     it "does not show cookie banner" do
+      # rubocop:disable Capybara/RSpec/NegationMatcherAfterVisit
       visit "/"
-      expect(page).not_to have_text "Cookies on Find unclaimed court money"
+      expect(page).to have_no_text "Cookies on Find unclaimed court money"
+      # rubocop:enable Capybara/RSpec/NegationMatcherAfterVisit
     end
   end
 end
