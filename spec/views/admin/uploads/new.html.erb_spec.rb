@@ -15,4 +15,3 @@ RSpec.describe "admin/uploads/new.html.erb" do
     end
   end
 end
-
