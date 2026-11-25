@@ -11,20 +11,20 @@ RSpec.describe "FUM regression journey", :js do
       visit_with_retry "/"
       click_link "Start now"
 
-      expect(page).to have_selector("h1", text: "Search for unclaimed court money")
+      expect(page).to have_css("h1", text: "Search for unclaimed court money")
       expect(page).to match_screenshot("regression/search_page")
 
       fill_in "keywords", with: "Regression"
       click_button "Search"
 
-      expect(page).to have_selector("h1", text: "Search results")
+      expect(page).to have_css("h1", text: "Search results")
       expect(page).to have_link("Regression Test Case")
       expect(page).to have_link("Download results as CSV")
       expect(page).to match_screenshot("regression/search_results_page")
 
       click_link "Regression Test Case"
 
-      expect(page).to have_selector("h1", text: "Account details")
+      expect(page).to have_css("h1", text: "Account details")
       expect(page).to have_text("Regression Test Case")
       expect(page).to have_link("Print account details")
       expect(page).to match_screenshot("regression/case_details_page")
@@ -39,27 +39,27 @@ RSpec.describe "FUM regression journey", :js do
     it "lets an admin log in, upload a CSV, see the summary, and log out", :aggregate_failures do
       visit_with_retry "/admin"
 
-      expect(page).to have_selector("h1", text: "Admin login")
+      expect(page).to have_css("h1", text: "Admin login")
       expect(page).to match_screenshot("regression/admin_login_page")
 
       fill_in "Login name", with: "regression_test"
       fill_in "Password", with: "regressionpass"
       click_button "Login"
 
-      expect(page).to have_selector("h1", text: "Upload CSV")
+      expect(page).to have_css("h1", text: "Upload CSV")
 
       attach_file "upload[file]", Rails.root.join("spec/fixtures/files/test.csv")
       click_button "Upload"
 
-      expect(page).to have_selector("h1", text: "Upload CSV Complete")
+      expect(page).to have_css("h1", text: "Upload CSV Complete")
       expect(page).to have_text("Records failed 0")
       expect(page).to match_screenshot("regression/admin_upload_complete_page")
 
       click_on "Back"
-      expect(page).to have_selector("h1", text: "Upload CSV")
+      expect(page).to have_css("h1", text: "Upload CSV")
 
       click_on "Log out"
-      expect(page).to have_selector("h1", text: "Admin login")
+      expect(page).to have_css("h1", text: "Admin login")
     end
   end
 end
