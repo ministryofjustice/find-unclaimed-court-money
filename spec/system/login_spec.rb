@@ -18,8 +18,8 @@ RSpec.describe "Login" do
 
     visit("/admin/upload")
     click_on("Log out")
-
-    expect(page).to have_selector("h1", text: "Admin login")
+    expect(page).to have_css("a", text: "Log out", class: "govuk-link govuk-link--text-colour")
+    expect(page).to have_css("h1", text: "Admin login")
   end
 
   it "does not allow logged out user access to upload page" do
