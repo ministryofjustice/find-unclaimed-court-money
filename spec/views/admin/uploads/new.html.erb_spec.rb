@@ -11,7 +11,6 @@ RSpec.describe "admin/uploads/new.html.erb" do
     it "sets focus to the error summary after validation" do
       assign(:upload, build(:upload, file: nil))
       render
-
       expect(rendered).to have_selector(".div[role='alert'][tabindex='-1']")
     end
   end
