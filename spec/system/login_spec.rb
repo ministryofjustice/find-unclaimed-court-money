@@ -10,7 +10,7 @@ RSpec.describe "Login" do
 
   it "allows the user to login" do
     system_login_as("test_user", "mypassword")
-    expect(page).to have_selector("h1", text: "Upload CSV")
+    expect(page).to have_css("h1", text: "Upload CSV")
   end
 
   it "allows the user to logout" do
@@ -18,17 +18,18 @@ RSpec.describe "Login" do
 
     visit("/admin/upload")
     click_on("Log out")
+
     expect(page).to have_css("a", text: "Log out", class: "govuk-link govuk-link--text-colour")
     expect(page).to have_css("h1", text: "Admin login")
   end
 
   it "does not allow logged out user access to upload page" do
     visit("/admin/upload")
-    expect(page).to have_selector("h1", text: "Admin login")
+    expect(page).to have_css("h1", text: "Admin login")
   end
 
   it "tells the user if there was a problem with login details" do
     system_login_as("test_user", "incorrect")
-    expect(page).to have_selector("h2", text: "There is a problem")
+    expect(page).to have_css("h2", text: "There is a problem")
   end
 end

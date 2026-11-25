@@ -6,12 +6,12 @@ RSpec.describe "Case" do
   end
 
   it "lets me view case details" do
-    expect(page).to have_selector("h1", text: "Account details")
+    expect(page).to have_css("h1", text: "Account details")
     expect(page).to have_text("Test Case")
   end
 
   it "has a button for printing the page" do
-    expect(page).to have_selector("a", text: "Print account details")
+    expect(page).to have_css("a", text: "Print account details")
   end
 
   it "lets me view more information about preparing the claim" do
