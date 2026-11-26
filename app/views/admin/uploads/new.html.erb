@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= t('page_title.upload') %>
+  <%= t('page_title.upload'); error_prefixed_title( t('page_title.upload'), @upload.errors.any?) %>
 <% end %>
 <p class="govuk-body">
   <%= govuk_link_to('Log out', admin_logout_path, class: "govuk-link govuk-link--text-colour") %>

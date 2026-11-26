@@ -9,10 +9,10 @@ RSpec.describe "admin/uploads/new.html.erb" do
     # rubocop:enable Capybara/RSpec/SpecificMatcher
   end
 
-  it "renders the form with a log out link", :aggregate_failures do
-    assign(:upload, build(:upload, file: nil))
+  it "displays the page title with error prefix", :aggregate_failures do
+    assign(:upload, build(:upload))
     render
 
-    expect(rendered).to have_link("Log out", class: "govuk-link govuk-link--text-colour")
+    expect(rendered).to have_css("title", text: "Error: Upload CSV - Find unclaimed court money")
   end
 end

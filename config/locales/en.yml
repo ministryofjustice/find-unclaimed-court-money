@@ -16,6 +16,7 @@ en:
     feedback:
       banner_html: Help us make this service better. Give us your <a href="https://www.smartsurvey.co.uk/s/OIRW0W/" class="govuk-link govuk-link--no-visited-state">feedback</a>.
   page_title:
+    error_prefix: 'Error:'
     accessibility: Accessibility statement
     case: Account details
     cookies: Cookies
