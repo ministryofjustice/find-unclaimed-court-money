@@ -8,4 +8,12 @@ RSpec.describe "searches/new.html.erb" do
     expect(rendered).to have_css("button", text: "Search")
     # rubocop:enable Capybara/RSpec/SpecificMatcher
   end
+
+  it "displays the page title with error prefix", :aggregate_failures do
+    assign(:search, build(:search))
+    render
+
+    expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money")
+    # rubocop:enable Capybara/RSpec/SpecificMatcher
+  end
 end

@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= t('page_title.search') %>
+  <%= t('page_title.search'); error_prefixed_title( t('page_title.search'), @search.errors.any? ) %>
 <% end %>
 
 <%= govuk_back_link(href: "/", text: "Back") %>

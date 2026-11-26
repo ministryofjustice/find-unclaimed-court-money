@@ -1,5 +1,6 @@
 <% content_for :page_title do %>
-  <%= t('page_title.login') %>
+  <%= t('page_title.login'); error_prefixed_title( t('page_title.login'), @login.errors.any?) %>
+
 <% end %>
 
 <h1 class="govuk-heading-xl">Admin login</h1>
