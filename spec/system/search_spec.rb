@@ -9,25 +9,25 @@ RSpec.describe "Search" do
     click_link "Start now"
 
     # Search page
-    expect(page).to have_selector("h1", text: "Search for unclaimed court money")
+    expect(page).to have_css("h1", text: "Search for unclaimed court money")
     fill_in "keywords", with: "test"
     click_button "Search"
 
     # Search results
-    expect(page).to have_selector("h1", text: "Search results")
-    expect(page).to have_selector("a", text: "Test Case")
+    expect(page).to have_css("h1", text: "Search results")
+    expect(page).to have_css("a", text: "Test Case")
     click_link("Test Case")
 
     # Case page
-    expect(page).to have_selector("h1", text: "Account details")
+    expect(page).to have_css("h1", text: "Account details")
   end
 
   it "tells me if there was a problem with my search input" do
     visit "/search"
     click_button "Search"
 
-    expect(page).to have_selector("h2", text: "There is a problem")
-    expect(page).to have_selector("a", text: "Keywords can't be blank")
+    expect(page).to have_css("h2", text: "There is a problem")
+    expect(page).to have_css("a", text: "Keywords can't be blank")
   end
 
   it "lets me search for a case within a date range" do
@@ -45,12 +45,12 @@ RSpec.describe "Search" do
     click_button "Search"
 
     # Search results
-    expect(page).to have_selector("h1", text: "Search results")
-    expect(page).to have_selector("a", text: "Test Case")
+    expect(page).to have_css("h1", text: "Search results")
+    expect(page).to have_css("a", text: "Test Case")
     click_link("Test Case")
 
     # Case page
-    expect(page).to have_selector("h1", text: "Account details")
+    expect(page).to have_css("h1", text: "Account details")
   end
 
   it "lets me search for a case within a date range and tells me if nothing is found" do
@@ -68,8 +68,8 @@ RSpec.describe "Search" do
     click_button "Search"
 
     # Search results
-    expect(page).to have_selector("h1", text: "Search results")
-    expect(page).to have_selector("p", text: "Nothing found to display.")
+    expect(page).to have_css("h1", text: "Search results")
+    expect(page).to have_css("p", text: "Nothing found to display.")
   end
 
   it "lets me search for a case by year carried over" do
@@ -78,8 +78,8 @@ RSpec.describe "Search" do
     fill_in "Search by year carried over", with: "2019"
     click_button "Search"
 
-    expect(page).to have_selector("h1", text: "Search results")
-    expect(page).to have_selector("p", text: "Nothing found to display.")
+    expect(page).to have_css("h1", text: "Search results")
+    expect(page).to have_css("p", text: "Nothing found to display.")
   end
 
   it "lets me download the search results as a CSV matching the results shown on screen" do
@@ -87,7 +87,7 @@ RSpec.describe "Search" do
     fill_in "keywords", with: "test"
     click_button "Search"
 
-    expect(page).to have_selector("a", text: "Test Case")
+    expect(page).to have_css("a", text: "Test Case")
     account_number = find("a", text: "Test Case")[:href].split("/").last
 
     click_link "Download results as CSV"

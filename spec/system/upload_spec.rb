@@ -15,7 +15,7 @@ RSpec.describe "Upload" do
     attach_file "upload[file]", file_fixture("test.csv")
     click_button "Upload"
 
-    expect(page).to have_selector("h1", text: "Upload CSV Complete")
+    expect(page).to have_css("h1", text: "Upload CSV Complete")
     expect(Case.count).to eq 2
   end
 
@@ -23,7 +23,7 @@ RSpec.describe "Upload" do
     attach_file "upload[file]", file_fixture("test.csv")
     click_button "Upload"
 
-    expect(page).to have_selector("h1", text: "Upload CSV Complete")
+    expect(page).to have_css("h1", text: "Upload CSV Complete")
     expect(page).to have_text("Records added or updated2")
     expect(page).to have_text("Records failed0")
   end
@@ -32,7 +32,7 @@ RSpec.describe "Upload" do
     attach_file "upload[file]", file_fixture("with_errors.csv")
     click_button "Upload"
 
-    expect(page).to have_selector("h1", text: "Upload CSV Complete")
+    expect(page).to have_css("h1", text: "Upload CSV Complete")
     expect(page).to have_text("Records failed1")
     expect(page).to have_text("Lines with errors4")
   end
@@ -42,9 +42,9 @@ RSpec.describe "Upload" do
     click_button "Upload"
 
     click_on "Back"
-    expect(page).to have_selector("h1", text: "Upload CSV")
+    expect(page).to have_css("h1", text: "Upload CSV")
 
     click_on "Log out"
-    expect(page).to have_selector("h1", text: "Admin login")
+    expect(page).to have_css("h1", text: "Admin login")
   end
 end

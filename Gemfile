@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-gem "rails", "8.1.4"
+gem "rails", "8.1.4.1"
 
-gem "activerecord-import"
+gem "activerecord-import", ">= 2.3.0"
 gem "bcrypt"
 gem "csv"
 gem "govuk_app_config"
@@ -14,13 +14,13 @@ gem "govuk_design_system_formbuilder"
 gem "pagy"
 gem "pg"
 gem "puma", "~> 7.1"
-gem "sentry-rails", "~> 6.4"
+gem "sentry-rails", "~> 7.0", ">= 7.0.0"
 gem "sentry-ruby"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
-gem "sprockets", "~> 4.2"
+gem "sprockets", "~> 4.3", ">= 4.3.0"
 gem "sprockets-rails", "~> 3.5"
 
 group :test do
