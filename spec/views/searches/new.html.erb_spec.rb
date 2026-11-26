@@ -14,6 +14,5 @@ RSpec.describe "searches/new.html.erb" do
     render
 
     expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money")
-    # rubocop:enable Capybara/RSpec/SpecificMatcher
   end
 end
