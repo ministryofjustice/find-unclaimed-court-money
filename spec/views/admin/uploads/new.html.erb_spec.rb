@@ -6,7 +6,6 @@ RSpec.describe "admin/uploads/new.html.erb" do
 
     expect(rendered).to have_css("form")
     expect(rendered).to have_css("button", text: "Upload")
-    # rubocop:enable Capybara/RSpec/SpecificMatcher
   end
 
   it "displays the page title with error prefix", :aggregate_failures do
