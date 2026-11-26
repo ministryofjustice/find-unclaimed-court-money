@@ -11,6 +11,6 @@
 <% else %>
   <%= govuk_button_link_to "Download results as CSV", to_csv_path(request.url) %>
   <%= render "table" %>
-  <%= govuk_pagination(pagy: @pagy) %>
+  <%= govuk_pagination_with_link_labels(pagy: @pagy) %>
 <% end %>
 
