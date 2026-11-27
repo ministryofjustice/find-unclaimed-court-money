@@ -17,9 +17,10 @@ RSpec.describe "Login" do
     system_login_as("test_user", "mypassword")
 
     visit("/admin/upload")
+    expect(page).to have_link("Log out", class: "govuk-link")
     click_on("Log out")
-
-    expect(page).to have_css("h1", text: "Admin login")
+    visit("/")
+    expect(page).to have_css("h1", text: "Find unclaimed court money")
   end
 
   it "does not allow logged out user access to upload page" do
