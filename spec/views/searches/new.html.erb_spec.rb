@@ -10,9 +10,10 @@ RSpec.describe "searches/new.html.erb" do
   end
 
   it "displays the page title with error prefix", :aggregate_failures do
-    assign(:search, build(:search))
-    render
-
-    expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money")
+    search = build(:search, keywords: nil, date_from: nil, date_to: nil, carried_over: nil)
+    search.valid?
+    assign(:search, search)
+    render template: "searches/new", layout: "layouts/application"
+    expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money", visible: :all)
   end
 end
