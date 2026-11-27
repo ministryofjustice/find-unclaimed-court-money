@@ -14,6 +14,6 @@ RSpec.describe "searches/new.html.erb" do
     search.valid?
     assign(:search, search)
     render template: "searches/new", layout: "layouts/application"
-    expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money", visible: :all)
+    expect(rendered).to have_css("title", text: "Error: Search - Find unclaimed court money", visible: :all, normalize_ws: true)
   end
 end

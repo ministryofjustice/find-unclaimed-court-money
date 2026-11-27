@@ -13,6 +13,6 @@ RSpec.describe "admin/uploads/new.html.erb" do
     assign(:upload, upload)
     render template: "admin/uploads/new", layout: "layouts/application"
 
-    expect(rendered).to have_css("title", text: "Error: Upload CSV - Find unclaimed court money", visible: :all)
+    expect(rendered).to have_css("title", text: "Error: Upload CSV - Find unclaimed court money", visible: :all, normalize_ws: true)
   end
 end
