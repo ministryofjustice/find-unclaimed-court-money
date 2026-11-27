@@ -26,7 +26,7 @@ RSpec.describe "Search" do
     visit "/search"
     click_button "Search"
 
-    expect(page).to have_title("Error: Search - Find unclaimed court money", normalize_ws: true)
+    expect(page).to have_css("title", text: "Error: Search - Find unclaimed court money", visible: :all, normalize_ws: true)
     expect(page).to have_css("h2", text: "There is a problem")
     expect(page).to have_css("a", text: "Keywords can't be blank")
   end
