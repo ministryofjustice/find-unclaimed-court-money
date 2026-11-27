@@ -17,8 +17,8 @@ RSpec.describe "Login" do
     system_login_as("test_user", "mypassword")
 
     visit("/admin/upload")
+    expect(page).to have_button("Log out", class: "govuk_link_classes")
     click_on("Log out")
-
     expect(page).to have_css("h1", text: "Admin login")
   end
 
